@@ -1,12 +1,30 @@
 // Stylus file for default/standard classes (like standard_form for flex form)
-
+@require "default_vars.styl"
 html {
   margin 0
   padding 0
+  background-color background-colour
+
+  .header_bar_container {
+    background-color light-grey
+    border-bottom: 4px solid cadetblue;
+    margin 0
+
+    .header_bar_inner {
+      display flex
+      flex-direction row
+      justify-content space-between
+
+      button {
+
+      }
+    }
+  }
 
   body {
     margin 0
     padding 0
+    height 100%
   }
 }
 
