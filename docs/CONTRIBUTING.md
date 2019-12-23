@@ -6,6 +6,12 @@ NOTE: THESE RULES ARE CURRENTLY MOOT (expect the pull requests) as it is a priva
 
 When wishing to contribute to this repository please follow these steps
 
+Branch management
+-----------------
+The master branch is the deployment branch and is what the website will/does run off. It is a protected branch so do not
+try and work out of it. Either create your own branch (if your a collaborator) or fork the repository and submit a pull
+request to dev-unstable.
+
 Steps to follow when contributing
 ---------------------------------
 1. Open an issue on github. This issue should contain what you want to change and an outline of what you want to add
