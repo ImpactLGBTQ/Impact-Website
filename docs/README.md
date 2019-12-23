@@ -1,4 +1,4 @@
-The Impact LGBTQ+ Group website
+The Impact LGBTQ+ Group's website
 ===============================
 
 This is the private repo for Impact's website. If you are reading this it is because you have been invited. Welcome and
