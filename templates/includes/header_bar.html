@@ -1,0 +1,37 @@
+<!-- Header bar include START -->
+<script>
+    function home_clicked() {
+        document.location = "{% url "impact_website-homepage" %}";
+    }
+    function member_portal() {
+        document.location = "";
+    }
+    function whats_on() {
+
+    }
+    function who_are_we() {
+
+    }
+    function find_us() {
+
+    }
+</script>
+<div class="header_bar_container">
+    <div class="header_bar_inner" style="display: flex; justify-content: space-between">
+        <div class="header_left">
+            <div><h3>Impact LGBTQ+</h3></div>
+            <div>
+                <button class="standard_btn" onclick="home_clicked()">Home</button>
+                <button class="standard_btn" onclick="who_are_we()">Who are we</button>
+                <button class="standard_btn" onclick="find_us()">Find us</button>
+            </div>
+        </div>
+        <div class="header_right">
+            <div><button class="standard_btn" onclick="whats_on()">Whats on</button></div>
+            <div>
+                <button class="standard_btn" onclick="member_portal()">Member portal</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header bar include END -->
