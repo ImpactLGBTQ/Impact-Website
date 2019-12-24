@@ -16,8 +16,47 @@
  =     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  =============================================================================*/
 
-// Homepage style sheet
-@require "../../../../static/css/defaults.styl"
+// Header bar stylesheet
+@require "default_vars.styl"
 
+.header_text {
+  margin-left 0
+  margin-right 0
+  margin-bottom: 5px;
+  margin-top 0;
+  padding-top 10px
+  color pink-colour
+}
 
+.header_bar_container {
+  background-color light-grey
+  border-bottom: 4px solid cadetblue;
+  margin 0
+  display: flex;
+  flex-direction column
+  justify-content space-between
+  width 100%
+  position: fixed;
+  .header_bar_inner {
+    display flex
+    flex-direction row
+    justify-content space-between
+    height 100%
+    padding-bottom 3px
+  
 
+    button {
+      height 100%
+      font-size large
+      background none
+      border 1px solid dark-violet
+      color violet-colour
+      border-radius 3px
+    }
+    button:hover {
+      background dark-violet
+      border-radius 5px
+      transform scale(1.1)
+    }
+  }
+}
