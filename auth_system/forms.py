@@ -26,3 +26,10 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
     remember_me = forms.BooleanField(initial=False)
+
+
+# Create account form presented to the user when they want to make an account on the site
+class CreateAccountForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.CharField(widget=forms.EmailInput, required=False, label='Email (optional)')

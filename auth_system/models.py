@@ -25,10 +25,16 @@ import uuid
 
 # User model which extends the build in model and attaches itself to it
 class UserModel(models.Model):
+    # Internal identifiers
     # User binding to extend built-in user model
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
 
+    # External identifiers (i.e username, email etc)
+    email = models.EmailField(default=None)
+
+    # Access restrictions
     is_impact = models.BooleanField(default=False, null=False)
     is_staff = models.BooleanField(default=False, null=False)
     access_level = models.IntegerField(default=1, null=False)
+

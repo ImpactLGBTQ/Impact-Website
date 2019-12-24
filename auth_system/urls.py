@@ -23,4 +23,5 @@ from . import views
 
 urlpatterns = (
     path('login', views.login_portal, name='auth_system-login_portal'),
+    path('create-account', views.create_account, name='auth_system-create_account')
 )
