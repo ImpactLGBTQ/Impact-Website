@@ -16,8 +16,12 @@
 
     }
 </script>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/header_bar.css" %}"/>
 <div class="header_bar_container">
-    <h3>Impact LGBTQ+</h3>
+    <div>
+        <h3 class="header_text">Impact LGBTQ+</h3>
+    </div>
     <div class="header_bar_inner">
         <div class="header_left">
             <button class="standard_btn" onclick="home_clicked()">Home</button>
