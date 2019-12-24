@@ -24,5 +24,5 @@ from django import forms
 # Login form presented to the user when they want to (or are required to) login
 class LoginForm(forms.Form):
     username = forms.CharField()
-    password = forms.PasswordInput()
+    password = forms.CharField(widget=forms.PasswordInput)
     remember_me = forms.BooleanField(initial=False)

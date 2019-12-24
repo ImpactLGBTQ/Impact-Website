@@ -3,8 +3,8 @@
     function home_clicked() {
         document.location = "{% url "impact_website-homepage" %}";
     }
-    function member_portal() {
-        document.location = "";
+    function login_portal() {
+        document.location = "{% url "auth_system-login_portal" %}";
     }
     function whats_on() {
 
@@ -39,7 +39,7 @@
         <div class="header_right">
             <button class="standard_btn" onclick="signposting()">Signposting</button>
             <button class="standard_btn" onclick="whats_on()">Whats on</button>
-            <button class="standard_btn" onclick="member_portal()">Member portal</button>
+            <button class="standard_btn" onclick="login_portal()">Login</button>
         </div>
     </div>
 </div>
