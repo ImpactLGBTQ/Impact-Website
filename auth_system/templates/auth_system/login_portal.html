@@ -9,7 +9,12 @@
     {% include "includes/header_bar.html" %}
 </div>
 <div class="body">
-    
+    <div>
+        <form class="standard_form login_form" action="{% url "auth_system-login_portal" %}" method="post">
+            {% csrf_token %}
+            {{ login_form }}
+        </form>
+    </div>
 </div>
 </body>
 </html>

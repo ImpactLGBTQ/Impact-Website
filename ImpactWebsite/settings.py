@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'impact_website.apps.ImpactWebsiteConfig',
+    'auth_system'
 ]
 
 MIDDLEWARE = [

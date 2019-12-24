@@ -18,8 +18,9 @@
 
 from django import urls
 from django.urls import path
+from . import views
 # File for urls for the auth_system app
 
 urlpatterns = (
-    path('')
+    path('login', views.login_portal, name='auth_system-login_portal'),
 )

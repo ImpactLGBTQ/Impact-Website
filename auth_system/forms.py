@@ -15,10 +15,14 @@
 #      You should have received a copy of the GNU General Public License
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ==============================================================================
+from django.db import models
+from django import forms
 
-from django.forms import forms
 
 # Forms file for the auth_system app
 
-class MemberLogin(forms.Form):
-    username =
+# Login form presented to the user when they want to (or are required to) login
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.PasswordInput()
+    remember_me = forms.BooleanField(initial=False)

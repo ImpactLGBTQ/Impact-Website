@@ -17,13 +17,22 @@
 # ==============================================================================
 
 from django.shortcuts import render
-
+from .forms import LoginForm
 # Create your views here.
 
 # Handler for the member portal
-def member_portal(request):
+def login_portal(request):
     if request.method == 'POST':
         # If its a complete member login, so a post request
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            # Only proceed if the form is valid
+            # Get the data out of the form
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            remember_me = form.cleaned_data['remember_me']
+
 
     else:
-        form =
+        form = LoginForm()
+        return render(request, 'auth_system/login_portal.html', {'login_form': form})
