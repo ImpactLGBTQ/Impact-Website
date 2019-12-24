@@ -19,13 +19,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Impact LGBTQ+</title>
-    <link rel="/src/res/stylesheet.css" type="text/css" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "impact_website/css/homepage.css" %}" />
 </head>
 <body>
 <div class="header">
     {% include "includes/header_bar.html" %}
 </div>
 <div class="body">
+    <!-- Banner -->
+    <img src="{% static "images/homepage_banner.jfif" %}" alt="Impact LGBTQ+" style="width: 100%"/>
+    <div class="main_body">
+        <h1>Impact homepage</h1>
+    </div>
 </div>
 </body>
 </html>
