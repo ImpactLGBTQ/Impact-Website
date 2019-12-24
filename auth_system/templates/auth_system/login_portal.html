@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Members portal</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "auth_system/login_portal.css" %}" />
 </head>
 <body>
 <div class="header">
     {% include "includes/header_bar.html" %}
 </div>
 <div class="body">
-    <div>
+    <div class="form_container">
+        <h2>Login to the Impact website</h2>
         <form class="standard_form login_form" action="{% url "auth_system-login_portal" %}" method="post">
             {% csrf_token %}
             {{ login_form }}
