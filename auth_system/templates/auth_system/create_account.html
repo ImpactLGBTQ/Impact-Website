@@ -12,7 +12,7 @@
 </div>
 <div class="body">
     <div class="form_container">
-        <form action="{% url "auth_system-create_account" %}" method="post">
+        <form class="standard_form" action="{% url "auth_system-create_account" %}" method="post">
             {% csrf_token %}
             {{ create_account_form }}
             <button type="submit">Create account</button>

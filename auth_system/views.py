@@ -20,6 +20,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from .forms import LoginForm, CreateAccountForm
 from .models import UserModel
+
+
 # Create your views here.
 
 # Handler for the login portal
@@ -37,6 +39,7 @@ def login_portal(request):
     else:
         form = LoginForm()
         return render(request, 'auth_system/login_portal.html', {'login_form': form})
+
 
 # Handler for the 'Create account' page
 def create_account(request):
@@ -61,4 +64,4 @@ def create_account(request):
         # If its a request for a signup
         # Create a new form and send it to the html
         form = CreateAccountForm()
-        return render(request, 'auth_system', {'create_account_form': form})
+        return render(request, 'auth_system/create_account.html', {'create_account_form': form})
