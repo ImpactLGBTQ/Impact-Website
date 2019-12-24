@@ -15,16 +15,29 @@
     function find_us() {
 
     }
+    function signposting() {
+        document.location = "{% url "impact_website-signposting" %}";
+    }
+    function faq_page() {
+        document.location = "{% url "impact_website-FAQ" %}";
+    }
 </script>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/header_bar.css" %}"/>
 <div class="header_bar_container">
-    <h3>Impact LGBTQ+</h3>
+    <div>
+        <h3 class="header_text" style="float: left">Impact LGBTQ+</h3>
+        <h4 class="header_text" style="float: right">A group for LGBTQ+ young people to be themselves</h4>
+    </div>
     <div class="header_bar_inner">
         <div class="header_left">
             <button class="standard_btn" onclick="home_clicked()">Home</button>
             <button class="standard_btn" onclick="who_are_we()">Who are we</button>
+            <button class="standard_btn" onclick="faq_page()">LGBTQ+ FAQ</button>
             <button class="standard_btn" onclick="find_us()">Find us</button>
         </div>
         <div class="header_right">
+            <button class="standard_btn" onclick="signposting()">Signposting</button>
             <button class="standard_btn" onclick="whats_on()">Whats on</button>
             <button class="standard_btn" onclick="member_portal()">Member portal</button>
         </div>
