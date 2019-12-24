@@ -18,6 +18,9 @@
     function signposting() {
         document.location = "{% url "impact_website-signposting" %}";
     }
+    function faq_page() {
+        document.location = "{% url "impact_website-FAQ" %}";
+    }
 </script>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "css/header_bar.css" %}"/>
@@ -30,6 +33,7 @@
         <div class="header_left">
             <button class="standard_btn" onclick="home_clicked()">Home</button>
             <button class="standard_btn" onclick="who_are_we()">Who are we</button>
+            <button class="standard_btn" onclick="faq_page()">LGBTQ+ FAQ</button>
             <button class="standard_btn" onclick="find_us()">Find us</button>
         </div>
         <div class="header_right">
