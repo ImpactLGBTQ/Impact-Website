@@ -15,6 +15,9 @@
     function find_us() {
 
     }
+    function signposting() {
+        document.location = "{% url "impact_website-signposting" %}";
+    }
 </script>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "css/header_bar.css" %}"/>
@@ -31,6 +34,7 @@
         </div>
         <div class="header_right">
             <button class="standard_btn" onclick="whats_on()">Whats on</button>
+            <button class="standard_btn" onclick="signposting()">Signposting</button>
             <button class="standard_btn" onclick="member_portal()">Member portal</button>
         </div>
     </div>
