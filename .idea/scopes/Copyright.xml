@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Copyright" pattern="!file:manage.py&amp;&amp;!file[ImpactWebsite]:.idea//*&amp;&amp;!file[ImpactWebsite]:impact_website/migrations//*&amp;&amp;!file[ImpactWebsite]:ImpactWebsite//*&amp;&amp;!file:db.css" />
+</component>
