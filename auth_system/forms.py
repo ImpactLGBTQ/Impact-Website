@@ -29,4 +29,4 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     ## Remember me field - Not required
     remember_me = forms.BooleanField(initial=False, required=False, widget=forms.CheckboxInput(attrs={
-        'class': 'form-check-input'}))
+        'class': 'form-check-input custom-control-input'}))
