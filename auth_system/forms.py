@@ -21,8 +21,11 @@ from django import forms
 
 # Forms file for the auth_system app
 
-# Login form presented to the user when they want to (or are required to) login
+## Login form presented to the user when they want to (or are required to) login
 class LoginForm(forms.Form):
+    ## Username field - Required
     username = forms.CharField()
+    ## Password field - Required
     password = forms.CharField(widget=forms.PasswordInput)
-    remember_me = forms.BooleanField(initial=False)
+    ## Remember me field - Not required
+    remember_me = forms.BooleanField(initial=False, required=False)
