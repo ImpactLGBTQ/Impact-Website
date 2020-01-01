@@ -43,20 +43,32 @@
     justify-content space-between
     height 100%
     padding-bottom 3px
-  
 
-    button {
-      height 100%
-      font-size large
-      background none
-      border 1px solid dark-violet
-      color violet-colour
-      border-radius 3px
-    }
-    button:hover {
-      background dark-violet
-      border-radius 5px
-      transform scale(1.1)
-    }
   }
+}
+ button {
+      height 100%
+      //font-size large
+      background none
+      border none
+      color button-foreground
+      border-radius 3px
+      background-color transparent
+      outline none
+    }
+button:hover {
+  //background dark-violet
+  border-radius 5px
+  transform scale(1.1)
+}
+
+button:after {
+  display block
+  content ' '
+  border-bottom 3px solid button-background
+  transform scaleX(0)
+  transition transform 250ms ease-in-out
+}
+button:hover:after {
+  transform scaleX(1)
 }
