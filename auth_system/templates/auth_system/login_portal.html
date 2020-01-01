@@ -5,6 +5,8 @@
     <title>Members portal</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static "auth_system/login_portal.css" %}" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="header">
@@ -16,23 +18,23 @@
         <form class="standard_form login_form" action="{% url "auth_system-login_portal" %}" method="post">
             {% csrf_token %}
             {{ login_form.non_field_errors }}
-            <div class="standard_form_row">
+            <div class="standard_form_row form-group">
                 {{ login_form.username.errors }}
                 <label for="{{ login_form.username.id_for_label }}">Username:</label><br>
                 {{ login_form.username }}
             </div>
-            <div class="standard_form_row">
+            <div class="standard_form_row form-group">
                 {{ login_form.password.errors }}
                 <label for="{{ login_form.password.id_for_label }}">Password:</label><br>
                 {{ login_form.password }}
             </div>
-            <div class="standard_form_row hard_left">
+            <div class="standard_form_row hard_left form-group">
                 {{ login_form.username.errors }}
                 <label style="white-space: nowrap" for="{{ login_form.remember_me.id_for_label }}">Remember me:</label>
                 {{ login_form.remember_me }}
             </div>
             <div class="standard_form_row">
-                <button class="form_btn" type="submit"><text>Login</text></button>
+                   <button class="form_btn btn btn-primary" type="submit"><text>Login</text></button>
             </div>
         </form>
     </div>
