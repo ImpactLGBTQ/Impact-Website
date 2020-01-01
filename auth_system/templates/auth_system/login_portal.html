@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>Members portal</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static "auth_system/login_portal.css" %}" />
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="header">
@@ -15,29 +14,33 @@
 <div class="body">
     <div class="form_container">
         <h2>Login to the Impact website</h2>
-        <form class="standard_form login_form" action="{% url "auth_system-login_portal" %}" method="post">
+        <!--standard_form login_form-->
+        <form class="standard_form" action="{% url "auth_system-login_portal" %}" method="post">
             {% csrf_token %}
             {{ login_form.non_field_errors }}
-            <div class="standard_form_row form-group">
+            <div class="form-group">
                 {{ login_form.username.errors }}
-                <label for="{{ login_form.username.id_for_label }}">Username:</label><br>
+                <label for="{{ login_form.username.id_for_label }}">Username</label>
                 {{ login_form.username }}
             </div>
-            <div class="standard_form_row form-group">
+            <div class="form-group">
                 {{ login_form.password.errors }}
-                <label for="{{ login_form.password.id_for_label }}">Password:</label><br>
+                <label for="{{ login_form.password.id_for_label }}">Password</label>
                 {{ login_form.password }}
             </div>
-            <div class="standard_form_row hard_left form-group">
+            <div class="form-check">
                 {{ login_form.username.errors }}
-                <label style="white-space: nowrap" for="{{ login_form.remember_me.id_for_label }}">Remember me:</label>
                 {{ login_form.remember_me }}
+                <label class="form-check-label" for="{{ login_form.remember_me.id_for_label }}">Remember me</label>
             </div>
-            <div class="standard_form_row">
+            <div class="form-group ">
                    <button class="form_btn btn btn-primary" type="submit"><text>Login</text></button>
             </div>
         </form>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

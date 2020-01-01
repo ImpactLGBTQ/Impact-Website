@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'impact_website.apps.ImpactWebsiteConfig',
     'auth_system',
-    'bootstrap4',
 ]
 
 MIDDLEWARE = [

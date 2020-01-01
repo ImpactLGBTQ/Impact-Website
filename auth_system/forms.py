@@ -24,8 +24,9 @@ from django import forms
 ## Login form presented to the user when they want to (or are required to) login
 class LoginForm(forms.Form):
     ## Username field - Required
-    username = forms.CharField()
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     ## Password field - Required
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     ## Remember me field - Not required
-    remember_me = forms.BooleanField(initial=False, required=False)
+    remember_me = forms.BooleanField(initial=False, required=False, widget=forms.CheckboxInput(attrs={
+        'class': 'form-check-input'}))
