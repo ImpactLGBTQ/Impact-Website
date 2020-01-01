@@ -50,7 +50,7 @@
 
   }
 }
- button {
+.header_btn {
       height 100%
       //font-size large
       background none
@@ -60,19 +60,19 @@
       background-color transparent
       outline none
     }
-button:hover {
+.header_btn:hover {
   //background dark-violet
   border-radius 5px
   transform scale(1.1)
 }
 
-button:after {
+.header_btn:after {
   display block
   content ' '
   border-bottom 3px solid button-background
   transform scaleX(0)
   transition transform 250ms ease-in-out
 }
-button:hover:after {
+.header_btn:hover:after {
   transform scaleX(1)
 }
