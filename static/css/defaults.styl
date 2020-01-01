@@ -19,6 +19,9 @@
 // Stylus file for default/standard classes (like standard_form for flex form)
 @require "default_vars.styl"
 
+// Titillium web font
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap')
+
 .title_text {
   margin-left 0
   margin-right 0
@@ -55,6 +58,12 @@ html {
       width 50%
     }
   }
+  h2 {
+    padding-bottom 30px
+  }
+  h3 {
+    padding-bottom 20px
+  }
 }
 
 .standard_form {
@@ -62,3 +71,9 @@ html {
   justify-content space-evenly
   flex-direction column
 }
+
+* {
+  font-family 'Titillium Web', sans-serif
+}
+
+
