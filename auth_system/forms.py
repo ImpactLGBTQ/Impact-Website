@@ -30,3 +30,12 @@ class LoginForm(forms.Form):
     ## Remember me field - Not required
     remember_me = forms.BooleanField(initial=False, required=False, widget=forms.CheckboxInput(attrs={
         'class': 'form-check-input custom-control-input'}))
+
+
+## Create an account form presented to the user when they wish to create an account
+class CreateAccForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    # Auth token required to get an account. May change in future
+    auth_token = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))

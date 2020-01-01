@@ -17,7 +17,11 @@
 # ==============================================================================
 
 from django.shortcuts import render
-from .forms import LoginForm
+from .forms import LoginForm, CreateAccForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+
+
 # Create your views here.
 
 # Handler for the member portal
@@ -31,8 +35,27 @@ def login_portal(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             remember_me = form.cleaned_data['remember_me']
-
+            user = authenticate(request, username=username, password=password)
+            # Check if its valid
+            if
 
     else:
         form = LoginForm()
         return render(request, 'auth_system/login_portal.html', {'login_form': form})
+
+## Handles requests for the create account page
+def create_account_portal(request):
+    if request.method == 'POST':
+        # If its a post request to add a new user
+        form = CreateAccForm(request.POST)
+        if form.is_valid():
+            # Only proceed if the form is valid
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            # Check authentication
+
+            # Create the user object
+    else:
+        # Else post the form to the user
+        form = CreateAccForm()
+        return render(request, 'auth_system/create_acc_portal.html', {'create_acc_form': form})

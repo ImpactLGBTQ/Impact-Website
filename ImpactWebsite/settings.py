@@ -126,3 +126,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = '/static/'
+
+# Override default user
+AUTH_USER_MODEL = 'auth_system.User'
