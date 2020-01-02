@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
+</head>
+<body>
+<div class="header">
+    {% include "includes/header_bar.html" %}
+</div>
+<div class="body">
+    <div>
+        <h2 class="display-2 title_text">Profile of {{ users_profile.username }}</h2>
+    </div>
+    <div>
+        <h3>Stats</h3>
+        <p>
+            Joined: {{ users_profile.joined }}
+            Last logged on: {{ users_profile.last_login }}
+        </p>
+    </div>
+</div>
+</body>
+</html>
