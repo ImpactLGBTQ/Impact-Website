@@ -10,5 +10,15 @@
 <div class="header">
     {% include 'includes/header_bar.html' %}
 </div>
+<div class="body">
+    <div class="form_container">
+        <h2 class="">Create account</h2>
+        <form class="standard_form" action="." method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button  type="submit" class="form_btn btn btn-primary">Create account</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
