@@ -14,7 +14,7 @@ class Post(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, null=False, primary_key=True)
 
     # Content and display
-    title = models.CharField(max_length=1024, null=False, default="")
+    title = models.CharField(max_length=1024, null=False, default="", help_text='Post title')
     content = models.TextField(null=False, default="")
 
     # Score
@@ -33,7 +33,7 @@ class Post(models.Model):
 
     # Access levels
     ACCESS_LEVEL_REQUIRED = (
-        (0, 'None'),
+        (0, 'Everyone'),
         (1, 'Member of Impact'),
         (2, 'Staff/Volunteer of Impact'),
     )

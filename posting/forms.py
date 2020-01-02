@@ -16,7 +16,7 @@ class MakeAPostForm(forms.ModelForm):
             'image': ImageUpload,
         }
         labels = {
-            'title': 'Title*',
+            'title': 'Post title',
             'content': '',
             'post_type': 'Category',
             'required_access': 'Visibility',
