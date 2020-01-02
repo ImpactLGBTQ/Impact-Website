@@ -23,7 +23,7 @@ import uuid
 
 # Create your models here.
 
-## Overrided base user class
+## Overrides and extends the base user class
 class User(AbstractUser):
     uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
 
