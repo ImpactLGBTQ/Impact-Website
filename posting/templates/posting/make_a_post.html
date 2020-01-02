@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Make a post</title>
     {% load static %}
+    {% load bootstrap4 %}
     <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
 </head>
 <body>
@@ -21,6 +22,7 @@
         <form enctype="multipart/form-data" class="standard_form" method="post" action="{% url "posting-make-a-post" %}">
             {% csrf_token %}
             {# Loop through and wrap them in the form row divs #}
+
             {% for field in form %}
                 {% if field.name == "image" %}
                     {# For the image special rendering is required. Cause its images and HTML lol #}
@@ -29,15 +31,13 @@
                         <label class="custom-file-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
                     </div>
                 {% else %}
-                    <div class="form-group">
-                        {{ field.errors }}
-                        {{ field.label_tag }}
-                        {{ field }}
-                    </div>
+                    {% bootstrap_field field %}
                 {% endif %}
             {% endfor %}
 
             <button class="btn btn-primary form_btn" type="submit">Post</button>
+
+
         </form>
     </div>
 </div>

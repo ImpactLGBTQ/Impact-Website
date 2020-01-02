@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'impact_website.apps.ImpactWebsiteConfig',
     'auth_system',
     'posting',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
