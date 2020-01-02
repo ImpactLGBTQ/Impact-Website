@@ -33,7 +33,7 @@ from django.urls import reverse_lazy
 class LoginPortal(LoginView):
     authentication_form = LoginForm
     template_name = 'auth_system/login_portal.html'
-
+    next = reverse_lazy('auth_system-view-profile', args={'user_id': 'me'})
 
 ## Handles requests for the create account page
 class CreateAccView(View):

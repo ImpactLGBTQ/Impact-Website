@@ -35,6 +35,9 @@
             // Redirects to the logout page
             document.location = "{% url "auth_system-logout" %}";
         }
+        function admin_hotlink() {
+            document.location = "{% url "admin:index" %}";
+        }
 
     {% endif %}
 </script>
@@ -47,6 +50,10 @@
             {# User is authenticated #}
             <div style="display: flex;">
                 <h4 class="header_text">Signed in as: {{ user.username }}</h4>
+                {% if user.is_impact_staff or user.is_staff %}
+                    {# Give the user a quick button to get to the admin control site if theyre allowed access #}
+                    <button class="header_btn" onclick="admin_hotlink()">Admin site</button>
+                {% endif %}
                 <button class="header_btn" onclick="logout()">Logout</button>
             </div>
         {% else %}
