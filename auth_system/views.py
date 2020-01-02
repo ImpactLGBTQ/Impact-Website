@@ -67,3 +67,18 @@ class CreateAccView(View):
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
+
+
+## Displays a users profile
+class ProfileView(View):
+    template = 'auth_system/profile_page.html'
+
+    ## Displays the profile based on their id
+    def get(self, request, user_id: str):
+        user = User.objects.get(uuid__exact=user_id)
+        if user:
+            # If its a valid user
+            return render(request, self.template, {'users_profile': user})
+        else:
+            # If its invalid uuid for a user
+            return response.Http404()

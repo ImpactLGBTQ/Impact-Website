@@ -23,5 +23,6 @@ from . import views
 
 urlpatterns = (
     path('login', views.LoginPortal.as_view(), name='auth_system-login_portal'),
-    path('create-account', views.CreateAccView.as_view(), name='auth_system-create-account-portal')
+    path('create-account', views.CreateAccView.as_view(), name='auth_system-create-account-portal'),
+    path('profile/<uuid:user_id>', views.ProfileView.as_view(), name='auth_system-view-profile'),
 )
