@@ -46,7 +46,7 @@ class CreateAccView(View):
             # Only proceed if the form is valid
             # Get the data out of the form
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+            password = form.cleaned_data['password1']
             auth_token = form.cleaned_data['auth_token']
 
             token = AuthTokens.objects.get(human_readable_tkn__exact=auth_token)
