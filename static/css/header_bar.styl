@@ -31,19 +31,21 @@
 .header_bar_container {
   background-color light-grey
   border-bottom: 4px solid cadetblue;
-  max-height 100px
+  height 10%
   margin 0
-  display: flex;
+  display: flex
+  opacity 1
   flex-direction column
   justify-content space-between
   width 100%
   position: fixed;
+  z-index 100
 
   .header_bar_inner {
     display flex
     flex-direction row
     justify-content space-between
-
+    position relative
     padding-left 30px
     padding-right 30px
     height 100%
@@ -53,7 +55,7 @@
 }
 .header_btn {
       height 100%
-      //font-size large
+      position relative
       background none
       border none
       color button-foreground
