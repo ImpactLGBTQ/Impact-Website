@@ -32,5 +32,9 @@ class MakeAPostView(View, LoginRequiredMixin):
                 # If its a success
                 return reverse_lazy('posting:made-a-post')
 
+    ## Handles the get request, displays the 'make a post' page
+    def get(self, request):
+        form = forms.MakeAPostForm()
+        return render(request, 'posting/make_a_post.html', {'form': form})
 
 
