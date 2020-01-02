@@ -16,14 +16,15 @@
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ==============================================================================
 
-from django import urls
+from django.urls import reverse
 from django.urls import path
 from . import views
 # File for urls for the auth_system app
 
 urlpatterns = (
-    path('login', views.LoginPortal.as_view(), name='auth_system-login_portal'),
     path('create-account', views.CreateAccView.as_view(), name='auth_system-create-account-portal'),
-    path('profile/<str:user_id>', views.ProfileView.as_view(), name='auth_system-view-profile'),
+    path('profile/<str:user_id>', views.ProfileView.as_view(), name='auth_system-view-profile',),
     path('logout', views.LogoutUserView.as_view(), name='auth_system-logout'),
+    path('login', views.LoginPortal.as_view(), name='auth_system-login_portal'),
+    path('profile/', views.ProfileView.as_view(), {'user_id': 'me'}, name='auth_system-view-profile-me'),
 )

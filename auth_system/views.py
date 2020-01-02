@@ -66,6 +66,7 @@ class CreateAccView(View):
         # If the form is invalid
         form.add_error('password1', 'Password too weak')
         return render(request, self.template_name, {'form': form})
+
     ## Get handler
     def get(self, request, *args, **kwargs):
         form = self.form_class()
@@ -93,4 +94,3 @@ class ProfileView(View):
 ## Logout view called to log a user out
 class LogoutUserView(LogoutView, LoginRequiredMixin):
     next_page = reverse_lazy('impact_website-homepage')
-

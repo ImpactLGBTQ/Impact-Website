@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import configparser
+from django.urls import reverse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -147,3 +148,6 @@ STATIC_URL = '/static/'
 
 # Override default user
 AUTH_USER_MODEL = 'auth_system.User'
+
+"""# Redirect on login url
+LOGIN_REDIRECT_URL = '/accounts/profile/me'"""
