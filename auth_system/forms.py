@@ -30,7 +30,7 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     ## Remember me field - Not required
     remember_me = forms.BooleanField(initial=False, required=False, widget=forms.CheckboxInput(attrs={
-        'class': 'form-check-input'}))
+        'class': 'custom-control-input'}))
 
 
 ## Create an account form presented to the user when they wish to create an account
@@ -39,4 +39,5 @@ class CreateAccForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     # Auth token required to get an account. May change in future
-    auth_token = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    auth_token = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label='Authentication '
+                                                                                                    'Token')

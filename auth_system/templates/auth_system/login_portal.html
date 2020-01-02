@@ -25,11 +25,11 @@
                 {{ form.password.errors }}
                 <label for="{{ form.password.id_for_label }}">Password</label>
                 {{ form.password }}
-            </div>
-            <div class="form-check">
+            </div> <!-- form-check -->
+            <div class="custom-control custom-switch">
                 {{ form.username.errors }}
                 {{ form.remember_me }}
-                <label class="form-check-label" for="{{ form.remember_me.id_for_label }}">Remember me</label>
+                <label class="custom-control-label" for="{{ form.remember_me.id_for_label }}">Remember me</label>
             </div>
             {% if form.non_field_errors %}
                 <div class="alert alert-warning alert-dismissible" role="alert">
@@ -40,8 +40,11 @@
 
                 </div>
             {% endif %}
-            <div class="form-group ">
-                   <button class="form_btn btn btn-primary" type="submit"><text>Login</text></button>
+            <button class="form_btn btn btn-primary" type="submit"><text>Login</text></button>
+            <div class="form-group" style="margin-top: 20px">
+                Dont have an account? <a class="signup_link" href=
+                    "{% url "auth_system-create-account-portal" %}">create
+                one</a>.<br> (You must be a member of Impact and have an authentication token)
             </div>
         </form>
     </div>
