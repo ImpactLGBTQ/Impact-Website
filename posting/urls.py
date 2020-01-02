@@ -4,8 +4,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = (
-    path('make-a-post', views.MakeAPostView.as_view(), name='posting:make-a-post'),
-    path('made-a-post', name='posting:made-a-post'),
+    path('make-a-post', views.MakeAPostView.as_view(), name='posting-make-a-post'),
+    path('made-a-post', views.MakeAPostView.as_view(), name='posting-made-a-post'),
 
 )
 

@@ -12,7 +12,7 @@
 </div>
 <div class="body">
     <div class="form_container">
-        <form class="standard_form" method="post" action="{% url "posting:make-a-post" %}">
+        <form class="standard_form" method="post" action="{% url "posting-make-a-post" %}">
             {% csrf_token %}
             {{ form }}
             <button class="btn form-btn" type="submit">Post</button>

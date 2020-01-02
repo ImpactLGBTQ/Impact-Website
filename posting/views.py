@@ -30,7 +30,7 @@ class MakeAPostView(View, LoginRequiredMixin):
             post = models.Post(author=author, title=title, content=content, image=img)
             if post.save():
                 # If its a success
-                return reverse_lazy('posting:made-a-post')
+                return reverse_lazy('posting-made-a-post')
 
     ## Handles the get request, displays the 'make a post' page
     def get(self, request):

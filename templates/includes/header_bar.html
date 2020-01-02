@@ -38,6 +38,9 @@
         function admin_hotlink() {
             document.location = "{% url "admin:index" %}";
         }
+        function make_post() {
+            document.location = "{% url "posting-make-a-post" %}";
+        }
 
     {% endif %}
 </script>
@@ -49,6 +52,7 @@
         {% if user.is_authenticated %}
             {# User is authenticated #}
             <div style="display: flex;">
+                <button class="header_btn" onclick="make_post()">Make a post</button>
                 <h4 class="header_text">Signed in as: {{ user.username }}</h4>
                 {% if user.is_impact_staff or user.is_staff %}
                     {# Give the user a quick button to get to the admin control site if theyre allowed access #}
