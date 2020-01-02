@@ -17,51 +17,53 @@
 # ==============================================================================
 
 from django.shortcuts import render
-from django.contrib.auth.models import User
-from .forms import LoginForm, CreateAccountForm
-from .models import UserModel
+from django.http import response
+from .forms import LoginForm, CreateAccForm
+from .models import User, AuthTokens
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView
+from django.views.generic import View
+from django.urls import reverse_lazy
 
 
 # Create your views here.
 
-# Handler for the login portal
-def login_portal(request):
-    if request.method == 'POST':
-        # If its a complete member login, so a post request
-        form = LoginForm(request.POST)
+# Handler for the member portal
+class LoginPortal(LoginView):
+    authentication_form = LoginForm
+    template_name = 'auth_system/login_portal.html'
+
+
+## Handles requests for the create account page
+class CreateAccView(View):
+    template_name = 'auth_system/create_acc_portal.html'
+    form_class = CreateAccForm
+
+    ## Post handler
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
             # Only proceed if the form is valid
             # Get the data out of the form
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            remember_me = form.cleaned_data['remember_me']
+            auth_token = form.cleaned_data['auth_token']
 
-    else:
-        form = LoginForm()
-        return render(request, 'auth_system/login_portal.html', {'login_form': form})
+            token = AuthTokens.objects.get(human_readable_tkn__exact=auth_token)
+            if token:
+                # If the token is valid, aka exists in the lookup table
+                user = User.objects.create_user(username=username, password=password, is_impact=True)
+                # Delete the old token
+                token.delete()
+                # Log the user in
+                login(request, user)
+                # Redirect to the login page
+                return response.HttpResponseRedirect(reverse_lazy('auth_system-login_portal'))
+            # Return an error
+            form.add_error(None, "Token is invalid. Ensure you entered it correctly and try again")
+            return render(request, self.template_name, {'form': form})
 
-
-# Handler for the 'Create account' page
-def create_account(request):
-    if request.method == 'POST':
-        # If its a post request, so a submitted form
-        form = CreateAccountForm(request.POST)
-        if form.is_valid():
-            # Continue if the form is valid
-            # Get the data out of the form
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            email = form.cleaned_data['email']
-
-            # Create the data models
-            user = User(username=username, password=password)
-            user_model = UserModel(email=email, user=user)
-
-            # Insert the data into the database
-            user.save()
-            user_model.save()
-    else:
-        # If its a request for a signup
-        # Create a new form and send it to the html
-        form = CreateAccountForm()
-        return render(request, 'auth_system/create_account.html', {'create_account_form': form})
+    ## Get handler
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})

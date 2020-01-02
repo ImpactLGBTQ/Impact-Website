@@ -17,19 +17,27 @@
 # ==============================================================================
 from django.db import models
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Forms file for the auth_system app
 
-# Login form presented to the user when they want to (or are required to) login
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    remember_me = forms.BooleanField(initial=False)
+## Login form presented to the user when they want to (or are required to) login
+class LoginForm(AuthenticationForm):
+    ## Username field - Required
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    ## Password field - Required
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    ## Remember me field - Not required
+    remember_me = forms.BooleanField(initial=False, required=False, widget=forms.CheckboxInput(attrs={
+        'class': 'custom-control-input'}))
 
 
-# Create account form presented to the user when they want to make an account on the site
-class CreateAccountForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    email = forms.CharField(widget=forms.EmailInput, required=False, label='Email (optional)')
+## Create an account form presented to the user when they wish to create an account
+class CreateAccForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    # Auth token required to get an account. May change in future
+    auth_token = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label='Authentication '
+                                                                                                    'Token')

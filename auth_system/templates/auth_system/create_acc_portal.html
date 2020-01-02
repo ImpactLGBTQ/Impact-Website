@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create an account</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/defaults.css' %}">
+</head>
+<body>
+<div class="header">
+    {% include 'includes/header_bar.html' %}
+</div>
+<div class="body">
+    <div class="form_container">
+        <h2 class="">Create account</h2>
+        <form class="standard_form" action="{% url "auth_system-create-account-portal" %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button  type="submit" class="form_btn btn btn-primary">Create account</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

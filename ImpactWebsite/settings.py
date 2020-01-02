@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'impact_website.apps.ImpactWebsiteConfig',
-    'auth_system'
+    'auth_system',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +125,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = '/static/'
+
+# Override default user
+AUTH_USER_MODEL = 'auth_system.User'
