@@ -16,6 +16,7 @@
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ==============================================================================
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.http import response
 from .forms import LoginForm, CreateAccForm
@@ -61,9 +62,10 @@ class CreateAccView(View):
                 # Redirect to the login page
                 return response.HttpResponseRedirect(reverse_lazy('auth_system-login_portal'))
             # Return an error
-            form.add_error(None, "Token is invalid. Ensure you entered it correctly and try again")
             return render(request, self.template_name, {'form': form})
-
+        # If the form is invalid
+        form.add_error('password1', 'Password too weak')
+        return render(request, self.template_name, {'form': form})
     ## Get handler
     def get(self, request, *args, **kwargs):
         form = self.form_class()
@@ -89,6 +91,6 @@ class ProfileView(View):
 
 
 ## Logout view called to log a user out
-@login_required
-class LogoutUser(LogoutView):
+class LogoutUserView(LogoutView, LoginRequiredMixin):
     next_page = reverse_lazy('impact_website-homepage')
+
