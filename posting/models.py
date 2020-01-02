@@ -24,6 +24,23 @@ class Post(models.Model):
     # Optional image
     image = models.ImageField(default=None, unique=False)
 
+    # Post types
+    POST_TYPE = (
+        ('whatson', 'Whats on (Feed post)'),
+        ('event', 'Event (Impact post)'),
+        ('general', 'General'),
+    )
+
+    # Access levels
+    ACCESS_LEVEL_REQUIRED = (
+        (0, 'None'),
+        (1, 'Member of Impact'),
+        (2, 'Staff/Volunteer of Impact'),
+    )
+
+    # Visibility (turn off instead of deleting, allows historical proof)
+    is_visible = models.BooleanField(default=True, null=False, help_text='Visibility, toggle instead of deleting')
+
     def __str__(self):
         return self.title
 
