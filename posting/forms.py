@@ -11,6 +11,8 @@ class MakeAPostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'post_type': forms.Select(attrs={'class': 'custom-select'}),
+            'required_access': forms.Select(attrs={'class': 'custom-select'}),
         }
         field_classes = {
             'image': ImageUpload,
@@ -20,4 +22,6 @@ class MakeAPostForm(forms.ModelForm):
             'content': '',
             'post_type': 'Category',
             'required_access': 'Visibility',
+            'image': ' '
         }
+
