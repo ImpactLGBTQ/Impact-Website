@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import configparser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+config = configparser.ConfigParser()
+with open('ImpactWebsite/DATA.ini') as conf:
+    config.read_file(conf)
 
 # Application definition
 
@@ -76,12 +80,27 @@ WSGI_APPLICATION = 'ImpactWebsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+name = config.get('DATABASE', 'name')
+username = config.get('DATABASE', 'username')
+password = config.get('DATABASE', 'password')
+use_postgre = config.get('DATABASE', 'use_postgre')
+
+if use_postgre == 'True':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': name,
+            'USERNAME': username,
+            'PASSWORD': password,
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
