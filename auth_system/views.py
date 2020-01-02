@@ -52,6 +52,8 @@ class CreateAccView(View):
             if token:
                 # If the token is valid, aka exists in the lookup table
                 user = User.objects.create_user(username=username, password=password, is_impact=True)
+                # Delete the old token
+                token.delete()
                 # Log the user in
                 login(request, user)
                 # Redirect to the login page
