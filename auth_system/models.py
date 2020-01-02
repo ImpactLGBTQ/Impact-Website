@@ -19,9 +19,16 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 import uuid
+import secrets
 
 
 # Create your models here.
+
+
+def generate_token():
+    tkn = secrets.token_hex(6)
+    return tkn
+
 
 ## Overrides and extends the base user class
 class User(AbstractUser):
@@ -30,4 +37,11 @@ class User(AbstractUser):
     is_impact = models.BooleanField(default=False, null=False)
     is_impact_staff = models.BooleanField(default=False, null=False)
     access_level = models.IntegerField(default=1, null=False)
+
+
+class AuthTokens(models.Model):
+    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True, null=False)
+
+    ## The human readable token used
+    human_readable_tkn = models.CharField(default=generate_token, null=False, max_length=12)
 

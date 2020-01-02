@@ -17,11 +17,13 @@
 # ==============================================================================
 
 from django.shortcuts import render
+from django.http import response
 from .forms import LoginForm, CreateAccForm
-from django.contrib.auth.models import User
+from .models import User, AuthTokens
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import LoginView
 from django.views.generic import View
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -46,13 +48,17 @@ class CreateAccView(View):
             password = form.cleaned_data['password']
             auth_token = form.cleaned_data['auth_token']
 
-
+            token = AuthTokens.objects.get(human_readable_tkn__exact=auth_token)
+            if token:
+                # If the token is valid, aka exists in the lookup table
+                User.objects.create_user(username=username, password=password, is_impact=True)
+                # Redirect to the login page
+                return response.HttpResponseRedirect(reverse_lazy('auth_system-login_portal'))
+            # Return an error
+            form.add_error(None, "Token is invalid. Ensure you entered it correctly and try again")
+            return render(request, self.template_name, {'form': form})
 
     ## Get handler
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
-
-
-    def check_token(self, token: str):
-        pass
