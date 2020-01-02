@@ -7,9 +7,12 @@
     {% load bootstrap4 %}
     <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "posting/css/make_a_post.css" %}">
+    <!-- bs-custom-file-input -->
     <link rel="script" href="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js">
      <script>
-        $(document).ready
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        })
     </script>
 </head>
 <body>
@@ -68,5 +71,6 @@
         </form>
     </div>
 </div>
+{% include "includes/boostrap_js.html" %}
 </body>
 </html>
