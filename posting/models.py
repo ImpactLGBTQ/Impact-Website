@@ -26,10 +26,10 @@ class Post(models.Model):
 
     # Post types
     POST_TYPES = (
-        ('whatson', 'Whats on (Feed post)'),
-        ('event', 'Event (Impact post)'),
+        (0, 'Whats on (Feed post)'),
+        (1, 'Event (Impact post)'),
     )
-    post_type = models.CharField(max_length=8, choices=POST_TYPES, null=False, default='whatson')
+    post_type = models.IntegerField(choices=POST_TYPES, null=False)
 
     # Access levels
     ACCESS_LEVEL_REQUIRED = (
@@ -37,7 +37,7 @@ class Post(models.Model):
         (1, 'Member of Impact'),
         (2, 'Staff/Volunteer of Impact'),
     )
-    required_access = models.IntegerField(choices=ACCESS_LEVEL_REQUIRED, null=False, default=0)
+    required_access = models.IntegerField(choices=ACCESS_LEVEL_REQUIRED, null=False)
 
     # Visibility (turn off instead of deleting, allows historical proof)
     is_visible = models.BooleanField(default=True, null=False, help_text='Visibility, toggle instead of deleting')
