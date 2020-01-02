@@ -31,6 +31,9 @@ class MakeAPostView(View, LoginRequiredMixin):
             if post.save():
                 # If its a success
                 return reverse_lazy('posting-made-a-post')
+        # An error occured
+        form.add_error(None, "An error occurred during processing of your request")
+        return render(request, 'posting/make_a_post.html', {'form': form})
 
     ## Handles the get request, displays the 'make a post' page
     def get(self, request):
