@@ -20,28 +20,34 @@ from django.shortcuts import render
 from .forms import LoginForm, CreateAccForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-
+from django.contrib.auth.views import LoginView
 
 # Create your views here.
 
 # Handler for the member portal
-def login_portal(request):
-    if request.method == 'POST':
-        # If its a complete member login, so a post request
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            # Only proceed if the form is valid
-            # Get the data out of the form
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            remember_me = form.cleaned_data['remember_me']
-            user = authenticate(request, username=username, password=password)
-            # Check if its valid
-            if
+class LoginPortal(LoginView):
+    authentication_form = LoginForm
+    template_name = 'auth_system/login_portal.html'
 
-    else:
-        form = LoginForm()
-        return render(request, 'auth_system/login_portal.html', {'login_form': form})
+
+
+    def login_portal(request):
+        if request.method == 'POST':
+            # If its a complete member login, so a post request
+            form = LoginForm(request.POST)
+            if form.is_valid():
+                # Only proceed if the form is valid
+                # Get the data out of the form
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
+                remember_me = form.cleaned_data['remember_me']
+                user = authenticate(request, username=username, password=password)
+                # Check if its valid
+
+
+        else:
+            form = LoginForm()
+            return render(request, 'auth_system/login_portal.html', {'login_form': form})
 
 ## Handles requests for the create account page
 def create_account_portal(request):

@@ -22,5 +22,5 @@ from . import views
 # File for urls for the auth_system app
 
 urlpatterns = (
-    path('login', views.login_portal, name='auth_system-login_portal'),
+    path('login', views.LoginPortal.as_view(), name='auth_system-login_portal'),
 )

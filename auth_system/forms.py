@@ -17,19 +17,20 @@
 # ==============================================================================
 from django.db import models
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Forms file for the auth_system app
 
 ## Login form presented to the user when they want to (or are required to) login
-class LoginForm(forms.Form):
+class LoginForm(AuthenticationForm):
     ## Username field - Required
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     ## Password field - Required
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     ## Remember me field - Not required
     remember_me = forms.BooleanField(initial=False, required=False, widget=forms.CheckboxInput(attrs={
-        'class': 'form-check-input custom-control-input'}))
+        'class': 'form-check-input'}))
 
 
 ## Create an account form presented to the user when they wish to create an account
