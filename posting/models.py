@@ -8,7 +8,7 @@ import uuid
 
 class Post(models.Model):
     # Post author
-    author = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, unique=False)
 
     # Post uuid
     uuid = models.UUIDField(default=uuid.uuid4, null=False, primary_key=True)
@@ -22,4 +22,8 @@ class Post(models.Model):
     downvotes = models.IntegerField(null=False, default=0)
 
     # Optional image
-    image = models.ImageField(default=None)
+    image = models.ImageField(default=None, unique=False)
+
+    def __str__(self):
+        return self.title
+

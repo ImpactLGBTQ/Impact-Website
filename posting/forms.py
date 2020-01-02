@@ -1,6 +1,7 @@
 ## Forms file for the impact website posting app
-from django.forms import forms, ModelForm, TextInput, Textarea, FileInput
+from django.forms import forms, ModelForm, TextInput, Textarea, ImageField, FileInput
 from .models import Post
+from .widgets import ImageUpload
 
 
 class MakeAPostForm(ModelForm):
@@ -10,7 +11,9 @@ class MakeAPostForm(ModelForm):
         widgets = {
             'title': TextInput(attrs={'class': 'form-control'}),
             'content': Textarea(attrs={'class': 'form-control'}),
-            'image': FileInput(attrs={'class': 'custom-file-input'}),
+        }
+        field_classes = {
+            'image': ImageUpload,
         }
         labels = {
             'title': 'Title*',

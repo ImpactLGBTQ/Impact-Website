@@ -12,7 +12,7 @@ class MakeAPostView(View, LoginRequiredMixin):
 
     ## Handles posting of a new post request
     def post(self, request):
-        form = forms.MakeAPostForm(request.POST)
+        form = forms.MakeAPostForm(request.POST, request.FILES)
 
         if form.is_valid():
             # If the form is a valid post
