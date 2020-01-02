@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make a post</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
+</head>
+<body>
+<div class="header">
+    {% include "includes/header_bar.html" %}
+</div>
+<div class="body">
+    <div class="form_container">
+        <form class="standard_form" method="post" action="{% url "posting:make-a-post" %}">
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn form-btn" type="submit">Post</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
