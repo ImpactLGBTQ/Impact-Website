@@ -24,13 +24,26 @@
     function faq_page() {
         document.location = "{% url "impact_website-FAQ" %}";
     }
+
+    {% if user.if_authenticated %}
+        {# No need for unneeded javascript #}
+        function profile_page() {
+            document.locaton = "TODO";
+        }
+    {% endif %}
 </script>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "css/header_bar.css" %}"/>
 <div class="header_bar_container">
     <div class="header_bar_inner">
         <h3 class="header_text" style="float: left">Impact LGBTQ+</h3>
-        <h4 class="header_text" style="float: right">A group for LGBTQ+ young people to be themselves</h4>
+        {% if user.is_authenticated %}
+            {# User is authenticated #}
+            <h4 class="header_text">Signed in as: {{ user.username }}</h4>
+        {% else %}
+            {# User isn't authenticated #}
+            <h4 class="header_text" style="float: right">A group for LGBTQ+ young people to be themselves</h4>
+        {% endif %}
     </div>
     <div class="header_bar_inner">
         <button class="header_btn" onclick="home_clicked()">Home</button>
@@ -40,7 +53,12 @@
         <button class="header_btn" onclick="whats_on()">Whats on</button>
         <button class="header_btn" onclick="signposting()">Signposting</button>
 
-        <button class="header_btn" onclick="login_portal()">Login</button>
+        {% if user.is_authenticated %}
+            {# Users authenticated, no need to show them the login button #}
+            <button class="header_btn" onclick="profile_page()">Profile</button>
+        {% else %}
+            <button class="header_btn" onclick="login_portal()">Login</button>
+        {% endif %}
     </div>
 </div>
 
