@@ -12,10 +12,28 @@
 </div>
 <div class="body">
     <div class="form_container">
-        <form class="standard_form" method="post" action="{% url "posting-make-a-post" %}">
+        <div>
+            <h2>Make a post</h2>
+        </div>
+        <form enctype="multipart/form-data" class="standard_form" method="post" action="{% url "posting-make-a-post" %}">
             {% csrf_token %}
-            {{ form }}
-            <button class="btn form-btn" type="submit">Post</button>
+            {# Loop through and wrap them in the form row divs #}
+            {% for field in form %}
+                {% if field.name == "image" %}
+                    {# For the image special rendering is required. Cause its images and HTML lol #}
+                    <div class="custom-file">
+                        {{ field }}
+                        <label class="custom-file-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <button class="btn btn-primary form_btn" type="submit">Post</button>
         </form>
     </div>
 </div>
