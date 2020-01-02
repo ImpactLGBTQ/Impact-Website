@@ -7,7 +7,7 @@ from .widgets import ImageUpload
 class MakeAPostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'content', 'image')
+        fields = ('title', 'content', 'image', 'post_type', 'required_access')
         widgets = {
             'title': TextInput(attrs={'class': 'form-control'}),
             'content': Textarea(attrs={'class': 'form-control'}),
