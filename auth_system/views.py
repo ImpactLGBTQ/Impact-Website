@@ -15,13 +15,13 @@
 #      You should have received a copy of the GNU General Public License
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ==============================================================================
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import response
 from .forms import LoginForm, CreateAccForm
 from .models import User, AuthTokens
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import View
 from django.urls import reverse_lazy
 
@@ -38,6 +38,7 @@ class LoginPortal(LoginView):
 class CreateAccView(View):
     template_name = 'auth_system/create_acc_portal.html'
     form_class = CreateAccForm
+    next = reverse_lazy('auth_system-view-profile', args={'user_id': 'me'})
 
     ## Post handler
     def post(self, request, *args, **kwargs):
@@ -75,6 +76,9 @@ class ProfileView(View):
 
     ## Displays the profile based on their id
     def get(self, request, user_id: str):
+        if user_id == 'me':
+            # The user profile shortcut to the current user
+            user_id = request.user.uuid
         user = User.objects.get(uuid__exact=user_id)
         if user:
             # If its a valid user
@@ -82,3 +86,9 @@ class ProfileView(View):
         else:
             # If its invalid uuid for a user
             return response.Http404()
+
+
+## Logout view called to log a user out
+@login_required
+class LogoutUser(LogoutView):
+    next_page = reverse_lazy('impact_website-homepage')
