@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn daemon for Impact website
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/impact_website
+ExecStart=/home/ubuntu/impact_website/impact_website/bin/gunicorn --access-logfile - --workers 3  --bind unix:/home/ubuntu/impact_website/ImpactWebsite.sock ImpactWebsite.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
