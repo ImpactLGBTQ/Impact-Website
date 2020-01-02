@@ -20,7 +20,7 @@ from django.shortcuts import render
 from django.http import response
 from .forms import LoginForm, CreateAccForm
 from .models import User, AuthTokens
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
 from django.views.generic import View
 from django.urls import reverse_lazy
@@ -51,7 +51,9 @@ class CreateAccView(View):
             token = AuthTokens.objects.get(human_readable_tkn__exact=auth_token)
             if token:
                 # If the token is valid, aka exists in the lookup table
-                User.objects.create_user(username=username, password=password, is_impact=True)
+                user = User.objects.create_user(username=username, password=password, is_impact=True)
+                # Log the user in
+                login(request, user)
                 # Redirect to the login page
                 return response.HttpResponseRedirect(reverse_lazy('auth_system-login_portal'))
             # Return an error
