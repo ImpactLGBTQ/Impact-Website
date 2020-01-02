@@ -1,0 +1,18 @@
+server {
+    listen 80
+    server_name server_name_here
+
+    location = /favicon.ico {
+        access_log off;
+        log_not_found off;
+    }
+
+    location /static/ {
+        root /home/ubuntu/impact_website;
+    }
+
+    location /impact-website {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/impact_website/ImpactWebsite.sock
+    }
+}
