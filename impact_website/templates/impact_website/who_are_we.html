@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Who are we</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static "impact_website/css/who_are_we.css" %}">
-</head>
-<body>
-<div class="header">
-    {% include "includes/header_bar.html" %}
-</div>
-<div class="body">
+{% extends "base/base_page.html" %}
+{% block title %}Who are we{% endblock %}
+{% load static %}
+{% block stylesheet_path %}{% static "impact_website/css/who_are_we.css" %}{% endblock %}
+{% block body %}
     <!-- Title section -->
     <h1 class="title_text display-2">Who are we</h1>
     <h4>Impact is...</h4>
@@ -100,7 +92,4 @@
             Impact on Tuesday evenings. Come to club and stroke our incredibly soft ears!
         </p>
     </div>
-</div>
-{% include "includes/boostrap_js.html" %}
-</body>
-</html>
+{% endblock %}

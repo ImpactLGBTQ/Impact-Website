@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Members portal</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static "auth_system/login_portal.css" %}" />
-</head>
-<body>
-<div class="header">
-    {% include "includes/header_bar.html" %}
-</div>
-<div class="body">
+{% extends "base/base_page.html" %}
+{% block title %}Login - Impact LGBTQ+{% endblock %}
+{% load static %}
+{% block stylesheet_path %}{% static "auth_system/login_portal.css" %}{% endblock %}
+{% block body %}
     <div class="form_container">
         <h2>Login to the Impact website</h2>
         <form class="standard_form" action="{% url "auth_system-login_portal" %}" method="post">
@@ -47,7 +39,4 @@
             </div>
         </form>
     </div>
-</div>
-{% include "includes/boostrap_js.html" %}
-</body>
-</html>
+{% endblock %}

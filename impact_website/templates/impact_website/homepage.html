@@ -1,38 +1,11 @@
-<!--
-  ~ ImpactWebsite Copyright (c) 2019. Ash England-Elbro
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Impact LGBTQ+</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static "impact_website/css/homepage.css" %}" />
-</head>
-<body>
-<div class="header">
-    {% include "includes/header_bar.html" %}
-</div>
-<div class="body">
+{% extends "base/base_page.html" %}
+{% block title %}Impact LGBTQ+{% endblock %}
+{% load static %}
+{% block stylesheet_path %}{% static "impact_website/css/homepage.css" %}{% endblock %}
+{% block body %}
     <!-- Banner -->
     <img src="{% static "images/homepage_banner.jfif" %}" alt="Impact LGBTQ+" style="width: 100%"/>
     <div class="main_body">
         <h1 class="title_text">Impact homepage</h1>
     </div>
-</div>
-{% include "includes/boostrap_js.html" %}
-</body>
-</html>
+{% endblock %}

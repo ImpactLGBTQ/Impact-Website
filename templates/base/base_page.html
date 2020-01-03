@@ -1,10 +1,25 @@
+<!--
+  ~ ImpactWebsite Copyright (c) 2019. Ash England-Elbro
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Title{% endblock %}</title>
     {% load static %}
-    {% load bootstrap4 %}
     <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
     <link rel="stylesheet" type="text/css" href="{% block stylesheet_path %}{% endblock %}">
 

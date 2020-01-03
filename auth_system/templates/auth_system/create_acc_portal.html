@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create an account</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/defaults.css' %}">
-</head>
-<body>
-<div class="header">
-    {% include 'includes/header_bar.html' %}
-</div>
+{% extends "base/base_page.html" %}
+{% block title %}Create account - Impact LGBTQ+{% endblock %}
+{% block body %}
 <div class="body">
     <div class="form_container">
         <h2 class="">Create account</h2>
@@ -19,7 +10,4 @@
             <button  type="submit" class="form_btn btn btn-primary">Create account</button>
         </form>
     </div>
-</div>
-{% include "includes/boostrap_js.html" %}
-</body>
-</html>
+{% endblock %}
