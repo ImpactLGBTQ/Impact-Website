@@ -43,8 +43,8 @@ class Post(models.Model):
     is_visible = models.BooleanField(default=True, null=False, help_text='Visibility, toggle instead of deleting')
 
     # Post dating
-    post_date = models.DateTimeField(default=datetime.datetime.now, null=False)
-    last_edit = models.DateTimeField(default=datetime.datetime.now, null=False)
+    post_date = models.DateTimeField(default=datetime.datetime.utcnow, null=False)
+    last_edit = models.DateTimeField(default=datetime.datetime.utcnow, null=False)
 
     class Meta:
-        ordering = ('post_date', 'edit_date')
+        ordering = ('post_date', 'last_edit')
