@@ -29,9 +29,12 @@ class MakeAPostView(View, LoginRequiredMixin):
             title = data['title']
             content = data['content']
             img = data['image']
+            access_level = data['required_access']
+            p_type = data['post_type']
 
             # Add the post to the database and return
-            post = models.Post(author=author, title=title, content=content, image=img)
+            post = models.Post(author=author, title=title, content=content, image=img, required_access=access_level,
+                               post_type=p_type)
             post.save()
             # If its a success
             return response.HttpResponseRedirect(reverse_lazy('posting-made-a-post'))
