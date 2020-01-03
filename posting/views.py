@@ -53,6 +53,7 @@ class WhatsOnView(View):
     ## Handles get request for the page (there is no post request for this page)
     def get(self, request):
         # Pull first 10 posts
-        posts = models.Post.objects.order_by()[:10]
+        posts = models.Post.objects.filter(required_access__lte=request.user.access_level,
+                                           post_type__exact=0).order_by()[:10]
 
         return render(request, self.template_name, {'posts': posts})
