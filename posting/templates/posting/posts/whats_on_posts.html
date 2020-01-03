@@ -6,8 +6,12 @@
     <h2>Whats on</h2>
     <hr>
     <div class="whats_on_container" style="margin-top: 50px">
-        {% for post in posts %}
-            {% include "posting/posts/post.html" %}
-        {% endfor %}
+        <div class="whats_on_grid">
+            {% for post in posts %}
+                <div class="whats_on_cell">
+                    {% include "posting/posts/post.html" %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
