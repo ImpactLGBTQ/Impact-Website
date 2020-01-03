@@ -8,7 +8,7 @@
         document.location = "{% url "auth_system-login_portal" %}";
     }
     function whats_on() {
-
+        document.location = "{% url "posting-whats-on" %}";
     }
     function who_are_we() {
         document.location = "{% url "impact_website-about-us" %}";
@@ -22,7 +22,6 @@
     function faq_page() {
         document.location = "{% url "impact_website-FAQ" %}";
     }
-
 
      {% if user.is_authenticated %}
         {# No need for unneeded javascript #}

@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Make a post</title>
+{% extends "base/base_page.html" %}
     {% load static %}
     {% load bootstrap4 %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "posting/css/make_a_post.css" %}">
+    {% block stylesheet_path %}{% static "posting/css/make_a_post.css" %}">{% endblock %}
+    {% block head %}
     <!-- bs-custom-file-input -->
     <link rel="script" href="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js">
      <script>
@@ -14,12 +10,8 @@
             bsCustomFileInput.init();
         })
     </script>
-</head>
-<body>
-<div class="header">
-    {% include "includes/header_bar.html" %}
-</div>
-<div class="body">
+    {% endblock %}
+{% block body %}
     <div class="form_container make_a_post_container">
         <div>
             <h2>Make a post</h2>
@@ -70,7 +62,4 @@
 
         </form>
     </div>
-</div>
-{% include "includes/boostrap_js.html" %}
-</body>
-</html>
+{% endblock %}

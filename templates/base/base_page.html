@@ -20,13 +20,19 @@
     <meta charset="UTF-8">
     <title>{% block title %}Title{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% block stylesheet_path %}{% endblock %}">
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {# Bootstrap #}
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+
+    <!-- Titilliumweb -->
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet_path %}{% endblock %}">
+
+    {% block head %}{% endblock %}
 </head>
 <body>
 <div class="header">
