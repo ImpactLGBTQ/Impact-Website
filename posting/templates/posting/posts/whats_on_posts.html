@@ -1,0 +1,11 @@
+{% extends "base/base_page.html" %}
+{% block title %}Whats on - Impact LGBTQ+{% endblock %}
+{% block body %}
+    <h2>Whats on</h2>
+    <hr>
+    <div class="whats_on_container" style="margin-top: 50px">
+        {% for post in posts %}
+            {% include "posting/posts/post.html" %}
+        {% endfor %}
+    </div>
+{% endblock %}
