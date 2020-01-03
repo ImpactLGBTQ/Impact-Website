@@ -1,7 +1,10 @@
 {% extends "base/base_page.html" %}
     {% load static %}
+
+
     {% load bootstrap4 %}
-    {% block stylesheet_path %}{% static "posting/css/make_a_post.css" %}">{% endblock %}
+
+    {% block stylesheet_path %}{% static "posting/css/make_a_post.css" %}{% endblock %}
     {% block head %}
     <!-- bs-custom-file-input -->
     <link rel="script" href="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js">
@@ -41,25 +44,7 @@
                     {% bootstrap_field form.content form_group_class='col' %}
                 </div>
             </div>
-            {% comment %}
-            {% for field in form %}
-                {% if field.name == "image" %}
-                    {# For the image special rendering is required. Cause its images and HTML lol #}
-                    <div class="custom-file">
-                        {{ field }}
-                        <label class="custom-file-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    </div>
-                {% elif field.name == 'post_type' or field.name == 'required_access' %}
-                    {# To inline these two fields we need to use rows #}
-
-                {% else %}
-                    {% bootstrap_field field %}
-                {% endif %}
-            {% endfor %}
-            {% endcomment %}
             <button class="btn btn-primary form_btn" type="submit">Post</button>
-
-
         </form>
     </div>
 {% endblock %}
