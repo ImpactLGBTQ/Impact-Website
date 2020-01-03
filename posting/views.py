@@ -5,6 +5,7 @@ from django.http import response
 from django.views import View
 from . import forms
 from . import models
+import datetime
 # Create your views here.
 
 
@@ -42,5 +43,15 @@ class MakeAPostView(View, LoginRequiredMixin):
     def get(self, request):
         form = forms.MakeAPostForm()
         return render(request, 'posting/make_a_post.html', {'form': form})
+
+class WhatsOnView(View):
+    template_name = "posting/posts/whats_on_posts.html"
+
+    ## Handles get request for the page (there is no post request for this page)
+    def get(self, request):
+        posts = models.Post.objects.order_by()
+
+
+        return render(request, self.template_name, {'posts':})
 
 

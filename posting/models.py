@@ -2,7 +2,7 @@ from django.db import models
 from auth_system.models import User
 from ImpactWebsite import settings
 import uuid
-
+import datetime
 
 # Create your models here.
 
@@ -42,6 +42,9 @@ class Post(models.Model):
     # Visibility (turn off instead of deleting, allows historical proof)
     is_visible = models.BooleanField(default=True, null=False, help_text='Visibility, toggle instead of deleting')
 
-    def __str__(self):
-        return self.title
+    # Post dating
+    post_date = models.DateTimeField(default=datetime.datetime.now, null=False)
+    last_edit = models.DateTimeField(default=datetime.datetime.now, null=False)
 
+    class Meta:
+        ordering = ('post_date', 'edit_date')
