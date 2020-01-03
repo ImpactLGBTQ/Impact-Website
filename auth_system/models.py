@@ -45,4 +45,3 @@ class AuthTokens(models.Model):
 
     ## The human readable token used
     human_readable_tkn = models.CharField(default=generate_token, null=False, max_length=12)
-

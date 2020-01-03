@@ -151,5 +151,3 @@ STATIC_URL = '/static/'
 # Override default user
 AUTH_USER_MODEL = 'auth_system.User'
 
-"""# Redirect on login url
-LOGIN_REDIRECT_URL = '/accounts/profile/me'"""
