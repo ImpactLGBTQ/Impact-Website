@@ -7,6 +7,10 @@ server {
         log_not_found off;
     }
 
+    location /robots.txt {
+        root /home/ubuntu/impact_website;
+    }
+
     location /static/ {
         root /home/ubuntu/impact_website;
     }
