@@ -35,7 +35,13 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}">
     <link rel="stylesheet" type="text/css" href="{% block stylesheet_path %}{% endblock %}">
     {% block head %}{% endblock %}
-
+    <div style="background-color: rgba(20, 20, 20, 0.8);margin: 0;padding:0;">
+        <noscript>
+            <h3 style="color: red">
+                This site cannot function properly without javascript, please enable it to use this site
+            </h3>
+        </noscript>
+    </div>
 </head>
 <body>
 <div class="header">
