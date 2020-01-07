@@ -68,13 +68,13 @@
                 <button class="dropdown-toggle header_btn" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 >☰</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <button class="header_btn dropdown-item" onclick="profile_page()">Profile</button>
-                    <button class="header_btn dropdown-item" onclick="make_post()">Make a post</button>
+                    <button class="header_btn dropdown-item menu_btn" onclick="profile_page()">Profile</button>
+                    <button class="header_btn dropdown-item menu_btn" onclick="make_post()">Make a post</button>
                     {% if user.is_impact_staff or user.is_staff %}
                         {# Give the user a quick button to get to the admin control site if theyre allowed access #}
-                        <button class="header_btn dropdown-item" onclick="admin_hotlink()">Admin site</button>
+                        <button class="header_btn dropdown-item menu_btn" onclick="admin_hotlink()">Admin site</button>
                     {% endif %}
-                    <button class="header_btn dropdown-item" onclick="logout()">Logout</button>
+                    <button class="header_btn dropdown-item menu_btn" onclick="logout()">Logout</button>
                 </div>
             </div>
         {% else %}
