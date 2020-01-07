@@ -43,10 +43,16 @@
 </script>
 <script>
     $(document).ready(function () {
-        $('.dropdown-toggle').hover(function () {
-            $('.dropdown-toggle').dropdown('toggle');
+        const target_el = $('.dropdown-toggle');
+        target_el.hover(function () {
+            target_el.dropdown('toggle');
+            target_el.style.outline = "none";
+
         }, function () {
-            $('.dropdown-toggle').dropdown('toggle');
+            $('.dropdown').mouseleave(function () {
+                target_el.dropdown('toggle');
+                target_el.style.outline = "none";
+            });
         });
     });
 
