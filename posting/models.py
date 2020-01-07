@@ -4,6 +4,7 @@ from ImpactWebsite import settings
 import uuid
 import datetime
 
+
 # Create your models here.
 
 class Post(models.Model):

@@ -41,26 +41,29 @@
 
     {% endif %}
 </script>
+<script>
+    $(document).ready(function () {
+        const target_el = $('.dropdown-toggle');
+        target_el.hover(function () {
+            target_el.dropdown('toggle');
+            target_el.style.outline = "none";
+
+        }, function () {
+            $('.dropdown').mouseleave(function () {
+                target_el.dropdown('toggle');
+                target_el.style.outline = "none";
+            });
+        });
+    });
+
+</script>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "css/header_bar.css" %}"/>
 <div class="header_bar_container">
     <div class="header_bar_inner">
         <h3 class="header_text" style="float: left">Impact LGBTQ+</h3>
-        {% if user.is_authenticated %}
-            {# User is authenticated #}
-            <div style="display: flex;">
-                <button class="header_btn" onclick="make_post()">Make a post</button>
-                <h4 class="header_text">Signed in as: {{ user.username }}</h4>
-                {% if user.is_impact_staff or user.is_staff %}
-                    {# Give the user a quick button to get to the admin control site if theyre allowed access #}
-                    <button class="header_btn" onclick="admin_hotlink()">Admin site</button>
-                {% endif %}
-                <button class="header_btn" onclick="logout()">Logout</button>
-            </div>
-        {% else %}
-            {# User isn't authenticated #}
-            <h4 class="header_text" style="float: right">A group for LGBTQ+ young people to be themselves</h4>
-        {% endif %}
+        <h4 class="header_text" style="float: right">A group for LGBTQ+ young people to be themselves</h4>
+
     </div>
     <div class="header_bar_inner">
         <button class="header_btn" onclick="home_clicked()">Home</button>
@@ -72,12 +75,30 @@
 
         {% if user.is_authenticated %}
             {# Users authenticated, no need to show them the login button #}
-            <button class="header_btn" onclick="profile_page()">Profile</button>
+            <div class="dropdown">
+                <button class="dropdown-toggle header_btn" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                >{{ user.username }}</button>
+                <div class="dropdown-menu" style="color: black" aria-labelledby="dropdownMenuButton">
+                    <button style="color: black"  class="header_btn dropdown-item menu_btn"
+                            onclick="profile_page()
+">Profile</button>
+                    <button style="color: black"  class="header_btn dropdown-item menu_btn" onclick="make_post()
+">Make a post</button>
+                    {% if user.is_impact_staff or user.is_staff %}
+                        {# Give the user a quick button to get to the admin control site if theyre allowed access #}
+                        <button style="color: black"  class="header_btn dropdown-item menu_btn"
+                                onclick="admin_hotlink()">Admin site</button>
+                    {% endif %}
+                    <div class="dropdown-divider"></div>
+                    <button style="color: black" class="header_btn dropdown-item menu_btn" onclick="logout()
+">Logout</button>
+                </div>
+            </div>
         {% else %}
             <button class="header_btn" onclick="login_portal()">Login</button>
         {% endif %}
     </div>
 </div>
-
 
 <!-- Header bar include END -->
