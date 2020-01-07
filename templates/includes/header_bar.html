@@ -46,13 +46,8 @@
 <div class="header_bar_container">
     <div class="header_bar_inner">
         <h3 class="header_text" style="float: left">Impact LGBTQ+</h3>
-        {% if user.is_authenticated %}
-            {# User is authenticated #}
-            <h4 class="header_text">Signed in as: {{ user.username }}</h4>
-        {% else %}
-            {# User isn't authenticated #}
-            <h4 class="header_text" style="float: right">A group for LGBTQ+ young people to be themselves</h4>
-        {% endif %}
+        <h4 class="header_text" style="float: right">A group for LGBTQ+ young people to be themselves</h4>
+
     </div>
     <div class="header_bar_inner">
         <button class="header_btn" onclick="home_clicked()">Home</button>
@@ -66,9 +61,10 @@
             {# Users authenticated, no need to show them the login button #}
             <div class="dropdown">
                 <button class="dropdown-toggle header_btn" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                >☰</button>
+                >{{ user.username }}</button>
                 <div class="dropdown-menu" style="color: black" aria-labelledby="dropdownMenuButton">
-                    <button style="color: black"  class="header_btn dropdown-item menu_btn" onclick="profile_page()
+                    <button style="color: black"  class="header_btn dropdown-item menu_btn"
+                            onclick="profile_page()
 ">Profile</button>
                     <button style="color: black"  class="header_btn dropdown-item menu_btn" onclick="make_post()
 ">Make a post</button>
