@@ -48,15 +48,7 @@
         <h3 class="header_text" style="float: left">Impact LGBTQ+</h3>
         {% if user.is_authenticated %}
             {# User is authenticated #}
-            <div style="display: flex;">
-                <button class="header_btn" onclick="make_post()">Make a post</button>
-                <h4 class="header_text">Signed in as: {{ user.username }}</h4>
-                {% if user.is_impact_staff or user.is_staff %}
-                    {# Give the user a quick button to get to the admin control site if theyre allowed access #}
-                    <button class="header_btn" onclick="admin_hotlink()">Admin site</button>
-                {% endif %}
-                <button class="header_btn" onclick="logout()">Logout</button>
-            </div>
+            <h4 class="header_text">Signed in as: {{ user.username }}</h4>
         {% else %}
             {# User isn't authenticated #}
             <h4 class="header_text" style="float: right">A group for LGBTQ+ young people to be themselves</h4>
@@ -72,7 +64,19 @@
 
         {% if user.is_authenticated %}
             {# Users authenticated, no need to show them the login button #}
-            <button class="header_btn" onclick="profile_page()">Profile</button>
+            <div class="dropdown">
+                <button class="dropdown-toggle header_btn" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                >☰</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="header_btn dropdown-item" onclick="profile_page()">Profile</button>
+                    <button class="header_btn dropdown-item" onclick="make_post()">Make a post</button>
+                    {% if user.is_impact_staff or user.is_staff %}
+                        {# Give the user a quick button to get to the admin control site if theyre allowed access #}
+                        <button class="header_btn dropdown-item" onclick="admin_hotlink()">Admin site</button>
+                    {% endif %}
+                    <button class="header_btn dropdown-item" onclick="logout()">Logout</button>
+                </div>
+            </div>
         {% else %}
             <button class="header_btn" onclick="login_portal()">Login</button>
         {% endif %}
