@@ -29,4 +29,5 @@ urlpatterns = (
     path('about-us', views.about_us, name='impact_website-about-us'),
     path('signposting', views.signposting, name='impact_website-signposting'),
     path('faq', views.faq_page, name='impact_website-FAQ'),
+    path('data-policy', views.data_policy, name='impact_website-data-policy'),
 )

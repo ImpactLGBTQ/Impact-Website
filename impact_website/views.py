@@ -37,7 +37,11 @@ def about_us(request):
 def signposting(request):
     return render(request, 'impact_website/signposting.html')
 
-
 ## Handles request for the 'FAQ' page
 def faq_page(request):
     return render(request, 'impact_website/FAQ.html')
+
+## Handles the 'data policy' page
+def data_policy(request):
+    return render(request, 'impact_website/cookie_policy.html')
+

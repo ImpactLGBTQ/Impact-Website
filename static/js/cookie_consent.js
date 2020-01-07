@@ -16,8 +16,9 @@ window.cookieconsent.initialise({
   },
   "position": "bottom-right",
   "content": {
-    "message": "This website uses cookies to improve your experience. We do not collect any unnecessary personal data about you",
+    "message": "This website uses cookies to improve your experience. We do not collect any data which could be used" +
+        " to personally identify you",
     "dismiss": "That's fine",
-    "href": "example.com"
+   // "href": "/data-policy"
   }
 });
