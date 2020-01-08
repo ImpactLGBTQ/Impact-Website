@@ -145,8 +145,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATIC_URL = '/static/'
-
+STATIC_URL = '/static_served/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_served')
 # Override default user
 AUTH_USER_MODEL = 'auth_system.User'
+
+# Production settings
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    #STATIC_URL = '/static_served/'
 

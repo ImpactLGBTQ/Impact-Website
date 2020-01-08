@@ -56,14 +56,20 @@ class WhatsOnView(View):
 
     ## Handles get request for the page (there is no post request for this page)
     def get(self, request):
-        cache_query = 'whats_on_recent-{}'.format(request.user.access_level)
+        if request.user.is_anonymous:
+            # If its an annoymous user, aka not logged in person, set the default 0 access level
+            access_level = 0
+        else:
+            # Else use the users access level
+            access_level = request.user.access_level
+        cache_query = 'whats_on_recent-{}'.format(access_level)
         # Check the cache for these posts
         cached_posts = cache.get(cache_query)
         if cached_posts:
             posts = cached_posts
         else:
             # Pull first 10 posts
-            posts = models.Post.objects.filter(required_access__lte=request.user.access_level,
+            posts = models.Post.objects.filter(required_access__lte=access_level,
                                                post_type__exact=0).order_by()[:10]
             # Cache the posts
             cache.set(cache_query, posts)
