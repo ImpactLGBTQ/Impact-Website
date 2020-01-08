@@ -35,6 +35,7 @@ class LoginPortal(LoginView):
     template_name = 'auth_system/login_portal.html'
     next = reverse_lazy('auth_system-view-profile', args={'user_id': 'me'})
 
+
 ## Handles requests for the create account page
 class CreateAccView(View):
     template_name = 'auth_system/create_acc_portal.html'
