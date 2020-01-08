@@ -3,6 +3,8 @@
 {% load static %}
 {% block stylesheet_path %}{% static "impact_website/css/faq.css" %}{% endblock %}
 {% block body %}
+    {% load cache %}
+    {% cache 84000 "FAQ-page" %}
     <h2 class="title_text display-2" style="border-bottom: none;margin-bottom: 0">FAQ</h2>
     <h3 class="title_text">Some common questions about being LGBTQ+ and the community</h3>
     <div>
@@ -69,4 +71,5 @@ Binding is done by transgender people in attempt at flattening their chest, usin
 If you discover your child is binding unsafely, or wants to start binding, make sure you provide them with safe methods only recommended by professionals. <!-- TODO: ADD IN A LINK HERE --> TODO: SUCH AS: X
 </p>
     </div>
+    {% endcache %}
 {% endblock %}
