@@ -1,5 +1,6 @@
 import logging
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
 from django.shortcuts import render
@@ -14,6 +15,7 @@ import datetime
 # Create your views here.
 
 
+@login_required
 ## Handles request to make a post
 class MakeAPostView(View, LoginRequiredMixin):
 
@@ -22,25 +24,8 @@ class MakeAPostView(View, LoginRequiredMixin):
         form = forms.MakeAPostForm(request.POST, request.FILES)
 
         if form.is_valid():
-            # If the form is a valid post
-
-            # Set author
-            author = request.user
-
-            # Pull out the data
-            data = form.cleaned_data
-            title = data['title']
-            content = data['content']
-            img = data['image']
-            access_level = data['required_access']
-            p_type = data['post_type']
-
-            # Add the post to the database and return
-            post = models.Post(author=author, title=title, content=content, image=img, required_access=access_level,
-                               post_type=p_type)
-            post.save()
+            form.create_post(request.user)
             # If its a success
-            logging.info("{} made a post with access level: {}".format(request.user.username, access_level))
             return response.HttpResponseRedirect(reverse_lazy('posting-made-a-post'))
         # An error occured
         errors = form.errors.as_data()

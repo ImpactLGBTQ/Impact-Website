@@ -1,3 +1,5 @@
+import logging
+
 from django.db import models
 from auth_system.models import User
 from ImpactWebsite import settings
@@ -46,6 +48,7 @@ class Post(models.Model):
     # Post dating
     post_date = models.DateTimeField(default=datetime.datetime.utcnow, null=False)
     last_edit = models.DateTimeField(default=datetime.datetime.utcnow, null=False)
+
 
     class Meta:
         ordering = ('post_date', 'last_edit')

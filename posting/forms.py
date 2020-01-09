@@ -1,6 +1,8 @@
 ## Forms file for the impact website posting app
+import logging
+
 from django import forms
-from .models import Post
+from .models import Post, User
 from .widgets import ImageUpload
 
 
@@ -25,3 +27,17 @@ class MakeAPostForm(forms.ModelForm):
             'image': ' '
         }
 
+    def create_post(self, author: User):
+        # Pull out the data
+        data = self.cleaned_data
+        title = data['title']
+        content = data['content']
+        img = data['image']
+        access_level = data['required_access']
+        p_type = data['post_type']
+
+        # Add the post to the database and return
+        post = Post(author=author, title=title, content=content, image=img, required_access=access_level,
+                    post_type=p_type)
+        post.save()
+        logging.info("{} made a post with access level: {}".format(request.user.username, access_level))
