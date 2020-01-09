@@ -15,6 +15,8 @@
 #      You should have received a copy of the GNU General Public License
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ==============================================================================
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -34,6 +36,9 @@ class LoginPortal(LoginView):
     authentication_form = LoginForm
     template_name = 'auth_system/login_portal.html'
     next = reverse_lazy('auth_system-view-profile', args={'user_id': 'me'})
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 ## Handles requests for the create account page

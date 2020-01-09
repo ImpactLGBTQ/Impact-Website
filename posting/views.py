@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
 from django.shortcuts import render
@@ -38,11 +40,14 @@ class MakeAPostView(View, LoginRequiredMixin):
                                post_type=p_type)
             post.save()
             # If its a success
+            logging.info("{} made a post with access level: {}".format(request.user.username, access_level))
             return response.HttpResponseRedirect(reverse_lazy('posting-made-a-post'))
         # An error occured
         errors = form.errors.as_data()
         form.add_error(None, "An error occurred during processing of your request")
         form.add_error(None, errors)
+        logging.error("Error occurred when processing of a Make a post form, may be irreversable. Error: {}\nForm: {} "
+                      .format(errors, form))
         return render(request, 'posting/make_a_post.html', {'form': form})
 
     ## Handles the get request, displays the 'make a post' page
@@ -67,11 +72,13 @@ class WhatsOnView(View):
         cached_posts = cache.get(cache_query)
         if cached_posts:
             posts = cached_posts
+            logging.info('Hitting cache for Whats on posts at access level {}'.format(access_level))
         else:
             # Pull first 10 posts
             posts = models.Post.objects.filter(required_access__lte=access_level,
                                                post_type__exact=0).order_by()[:10]
             # Cache the posts
             cache.set(cache_query, posts)
+            logging.info("Hitting database and adding to cache for Whats on posts at access level {}".format(access_level))
 
         return render(request, self.template_name, {'posts': posts})
