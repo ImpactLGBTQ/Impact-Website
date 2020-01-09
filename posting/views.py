@@ -1,6 +1,5 @@
 import logging
 
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
 from django.shortcuts import render
@@ -15,7 +14,6 @@ import datetime
 # Create your views here.
 
 
-@login_required
 ## Handles request to make a post
 class MakeAPostView(View, LoginRequiredMixin):
 

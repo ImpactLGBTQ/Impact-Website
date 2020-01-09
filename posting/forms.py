@@ -2,6 +2,8 @@
 import logging
 
 from django import forms
+from django.core.cache import cache
+
 from .models import Post, User
 from .widgets import ImageUpload
 
@@ -40,4 +42,7 @@ class MakeAPostForm(forms.ModelForm):
         post = Post(author=author, title=title, content=content, image=img, required_access=access_level,
                     post_type=p_type)
         post.save()
-        logging.info("{} made a post with access level: {}".format(request.user.username, access_level))
+        # Delete all the cache for posts up to our access level
+        cache.delete_many(['whats_on_recent-{}'.format(x) for x in range(0, access_level)])
+        logging.info("{} made a post with access level: {}".format(author, access_level))
+
