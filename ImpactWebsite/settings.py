@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import configparser
+
+from django.contrib.staticfiles import storage
 from django.urls import reverse
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -63,8 +66,7 @@ ROOT_URLCONF = 'ImpactWebsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,8 +148,16 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATIC_URL = '/static/'
-
+STATIC_URL = '/static_served/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_served')
 # Override default user
 AUTH_USER_MODEL = 'auth_system.User'
+
+# Production settings
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    STATIC_URL = '/static_served/'
+    STATICFILES_STORAGE = storage.ManifestStaticFilesStorage
+    CSRF_COOKIE_SECURE = True
+
 

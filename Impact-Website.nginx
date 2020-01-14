@@ -11,7 +11,7 @@ server {
         root /home/ubuntu/impact_website;
     }
 
-    location /static/ {
+    location /static_served/ {
         root /home/ubuntu/impact_website;
     }
 

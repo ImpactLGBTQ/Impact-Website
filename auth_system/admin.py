@@ -29,4 +29,4 @@ class UserAccountsAdmin(admin.ModelAdmin):
 
 @admin.register(models.AuthTokens)
 class AuthenticationTokensAdmin(admin.ModelAdmin):
-    pass
+    fields = ('human_readable_tkn',)

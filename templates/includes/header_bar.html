@@ -1,5 +1,8 @@
 <!-- Header bar include START -->
 
+{% load static %}
+{% load cache %}
+{% cache 86400 "header_bar" %}
 <script>
     function home_clicked() {
         document.location = "{% url "impact_website-homepage" %}";
@@ -23,23 +26,20 @@
         document.location = "{% url "impact_website-FAQ" %}";
     }
 
-     {% if user.is_authenticated %}
-        {# No need for unneeded javascript #}
-        function profile_page() {
-            document.location = "{% url "auth_system-view-profile" "me" %}";
-        }
-        function logout() {
-            // Redirects to the logout page
-            document.location = "{% url "auth_system-logout" %}";
-        }
-        function admin_hotlink() {
-            document.location = "{% url "admin:index" %}";
-        }
-        function make_post() {
-            document.location = "{% url "posting-make-a-post" %}";
-        }
+    function profile_page() {
+        document.location = "{% url "auth_system-view-profile" "me" %}";
+    }
+    function logout() {
+        // Redirects to the logout page
+        document.location = "{% url "auth_system-logout" %}";
+    }
+    function admin_hotlink() {
+        document.location = "{% url "admin:index" %}";
+    }
+    function make_post() {
+        document.location = "{% url "posting-make-a-post" %}";
+    }
 
-    {% endif %}
 </script>
 <script>
     $(document).ready(function () {
@@ -56,8 +56,8 @@
         });
     });
 </script>
-{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "css/header_bar.css" %}"/>
+
 <div class="header_bar_container">
     <div class="header_bar_inner" id="title_container">
         <h3 class="header_text" style="float: left">Impact LGBTQ+</h3>
@@ -72,6 +72,7 @@
             <button class="header_btn" onclick="whats_on()">Whats on</button>
             <button class="header_btn" onclick="signposting()">Signposting</button>
         </nav>
+    {% endcache %}
         {% if user.is_authenticated %}
             {# Users authenticated, no need to show them the login button #}
             <div class="dropdown">
