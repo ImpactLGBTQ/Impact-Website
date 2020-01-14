@@ -15,6 +15,7 @@
 #      You should have received a copy of the GNU General Public License
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ==============================================================================
+import logging
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -39,6 +40,19 @@ class User(AbstractUser):
     is_impact_staff = models.BooleanField(default=False, null=False)
     access_level = models.IntegerField(default=1, null=False)
 
+    # Ensure the access level is consistant with other fields like is_staff
+    def sync_access_level(self):
+        if self.access_level < 3 and (self.is_staff or self.is_impact_staff):
+            # If the access the level isnt high enough for some reason (will be for new superusers)
+            logging.warning("Had to update access level for {} from {} to 3".format(self.username, self.access_level))
+            self.access_level = 3
+        # If impact level too low
+        if self.access_level < 2 and self.is_impact:
+            logging.warning("Had to update access level for {} from {} to 2".format(self.username, self.access_level))
+            self.access_level = 2
+
+        # Save the updated values (wont do anything if they're not)
+        self.save()
 
 class AuthTokens(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, primary_key=True, null=False)

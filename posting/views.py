@@ -49,6 +49,8 @@ class WhatsOnView(View):
             access_level = 0
         else:
             # Else use the users access level
+            # Ensure access level is updated
+            request.user.sync_access_level()
             access_level = request.user.access_level
         cache_query = 'whats_on_recent-{}'.format(access_level)
         # Check the cache for these posts
