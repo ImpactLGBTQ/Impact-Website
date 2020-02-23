@@ -47,4 +47,10 @@ class AuthenticateUser(ObtainAuthToken):
         return HttpResponseUnauthorized()
 
 
+class GetCSRF(APIView):
+
+    def get(self, request, **kw):
+        return render(request, 'api/get_csrf.html')
+
+
 
