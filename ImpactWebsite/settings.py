@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'impact_website.apps.ImpactWebsiteConfig',
     'auth_system',
+    'rest_framework.authtoken',
     'posting',
     'bootstrap4',
     'api',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +65,18 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ImpactWebsite.urls'
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+}
 
 TEMPLATES = [
     {
