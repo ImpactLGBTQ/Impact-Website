@@ -21,4 +21,5 @@ urlpatterns = (
     path('', include('impact_website.urls')),
     path('accounts/', include('auth_system.urls')),
     path('posting/', include('posting.urls')),
+    path('api/', include('api.urls',  namespace='api')),
 )

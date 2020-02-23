@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'auth_system',
     'posting',
     'bootstrap4',
+    'api',
 ]
 
 MIDDLEWARE = [
