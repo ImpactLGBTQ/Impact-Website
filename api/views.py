@@ -17,6 +17,7 @@ class AuthenticateUser(View):
 
     def post(self, request):
         json_data = request.body
+        print("Recived: ", json_data)
 
         try:
             data = json.loads(json_data)

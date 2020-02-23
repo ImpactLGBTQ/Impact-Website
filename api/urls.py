@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'api'
 urlpatterns = (
-    path('logmein/', views.AuthenticateUser.as_view, name='authenticate-user'),
+    path('auth/logmein/', views.AuthenticateUser.as_view(), name='authenticate-user'),
 
 )
 
