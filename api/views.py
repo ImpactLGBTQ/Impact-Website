@@ -4,11 +4,12 @@ from rest_framework.views import APIView
 
 from auth_system.forms import LoginForm
 from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-
 from django import http
 import json
 import logging
+from.responses import HttpResponseUnauthorized
 # Create your views here.
 
 class GetUserData(View):
@@ -22,7 +23,6 @@ class AuthenticateUser(ObtainAuthToken):
         json_data = request.body
         print("Recived: ", json_data)
 
-        return super().post(request, **kwargs)
         try:
             data = json.loads(json_data)
         except TypeError:
@@ -34,9 +34,17 @@ class AuthenticateUser(ObtainAuthToken):
         # Unpack the data
         username = data['username']
         password = data['password']
-        print(username)
-        print(password)
-        return http.HttpResponse()
+
+        # Test login
+        user = authenticate(username=username, password=password)
+
+        if user:
+            # Logged in successfully
+            # Get the token
+            token = Token.objects.get(user=user)
+            return http.JsonResponse({"token": token.key})
+
+        return HttpResponseUnauthorized()
 
 
 
