@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.views import View
+from rest_framework.views import APIView
+
 from auth_system.forms import LoginForm
 from django.contrib.auth import authenticate
+from rest_framework.authtoken.views import ObtainAuthToken
+
 from django import http
 import json
 import logging
-from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 class GetUserData(View):
@@ -14,12 +17,12 @@ class GetUserData(View):
        pass
 
 
-class AuthenticateUser(View):
-    @csrf_exempt
-    def post(self, request):
+class AuthenticateUser(ObtainAuthToken):
+    def post(self, request, **kwargs):
         json_data = request.body
         print("Recived: ", json_data)
 
+        return super().post(request, **kwargs)
         try:
             data = json.loads(json_data)
         except TypeError:
