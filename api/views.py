@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from django import http
 import json
 import logging
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 class GetUserData(View):
@@ -14,7 +15,7 @@ class GetUserData(View):
 
 
 class AuthenticateUser(View):
-
+    @csrf_exempt
     def post(self, request):
         json_data = request.body
         print("Recived: ", json_data)
