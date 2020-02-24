@@ -47,6 +47,13 @@ class AuthenticateUser(ObtainAuthToken):
 
 class GetPosts(APIView):
 
+    def post(self, request):
+        # Extract the data
+        raw = request.body
+        # Unmarshal it
+        json_data = json.loads(raw)
+
+
 
 
 # Get a csrf token

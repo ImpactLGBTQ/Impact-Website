@@ -12,7 +12,7 @@ This documentation follows the format of
 
 `URL`
 
-`JSON`
+`JSON/CODES`
 
 
 #### Authenticate user
@@ -26,8 +26,8 @@ URL: `/api/auth/logmein`
 SENT: JSON:
 ``` json
 {
-    'username': 'user username',
-    'password': 'user password',
+    "username": 'user username',
+    "password": 'user password',
 }
 ```
 RESPONSE: CODE: 
@@ -46,8 +46,19 @@ SENT: `N/A`
 RESPONSE: JSON:
 ``` json
 {
-    'username': 'user username to display',
-    'uuid': 'user uuid to use for searches',
+    "username": 'user username to display',
+    "uuid": 'user uuid to use for searches',
+}
+```
+
+
+#### Get post(s)
+Get a post or posts from the database
+
+SENT: JSON:
+```json
+{
+"id": "post id, or 'all' for all posts (up to 20)"
 }
 ```
 
