@@ -45,6 +45,10 @@ class AuthenticateUser(ObtainAuthToken):
         return HttpResponseUnauthorized()
 
 
+class GetPosts(APIView):
+
+
+
 # Get a csrf token
 class GetCSRF(APIView):
 
