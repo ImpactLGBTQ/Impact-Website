@@ -8,7 +8,7 @@ urlpatterns = (
     path('user/', views.GetUserInfo.as_view(), name="get-user-info"),
 
     path('auth/logmein/', views.AuthenticateUser.as_view(), name='authenticate-user'),
-
+    path('auth/logmeout/', views.LogoutView.as_view(), name='logout-user'),
 )
 
 

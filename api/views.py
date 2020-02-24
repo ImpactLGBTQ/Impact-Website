@@ -1,3 +1,4 @@
+from django.contrib.auth.views import LogoutView
 from django.shortcuts import render
 from django.views import View
 from rest_framework.response import Response
@@ -59,3 +60,5 @@ class GetUserInfo(APIView):
         return Response(serializer.data)
 
 
+class DeauthUser(LogoutView, APIView):
+    pass
