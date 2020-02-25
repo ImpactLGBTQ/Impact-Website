@@ -75,8 +75,8 @@ class GetPosts(APIView):
             cache.set(cache_query, posts)
             logging.info("Hitting database and adding to cache for Whats on posts at access level {}".format(access_level))
 
-        serialized = PostSerializer(posts)
-        return http.JsonResponse(serialized)
+        serialized = PostSerializer(posts, many=True)
+        return http.JsonResponse(serialized.data, safe=False)
 
 
 
