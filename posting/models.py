@@ -18,11 +18,11 @@ class Post(models.Model):
 
     # Content and display
     title = models.CharField(max_length=1024, null=False, default="", help_text='Post title')
-    content = models.TextField(null=False, default="")
+    content = models.TextField(default="")
 
     # Score
-    upvotes = models.IntegerField(null=False, default=0)
-    downvotes = models.IntegerField(null=False, default=0)
+    upvotes = models.IntegerField(default=0)
+    downvotes = models.IntegerField(default=0)
 
     # Optional image
     image = models.ImageField(default=None, unique=False)
@@ -32,7 +32,7 @@ class Post(models.Model):
         (0, 'Whats on (Feed post)'),
         (1, 'Event (Impact post)'),
     )
-    post_type = models.IntegerField(choices=POST_TYPES, null=False, default=0, blank=False)
+    post_type = models.IntegerField(choices=POST_TYPES, default=0)
 
     # Access levels
     ACCESS_LEVEL_REQUIRED = (
@@ -43,12 +43,11 @@ class Post(models.Model):
     required_access = models.IntegerField(choices=ACCESS_LEVEL_REQUIRED, null=False, default=0, blank=False)
 
     # Visibility (turn off instead of deleting, allows historical proof)
-    is_visible = models.BooleanField(default=True, null=False, help_text='Visibility, toggle instead of deleting')
+    is_visible = models.BooleanField(default=True, help_text='Visibility, toggle instead of deleting')
 
     # Post dating
     post_date = models.DateTimeField(default=datetime.datetime.utcnow, null=False)
     last_edit = models.DateTimeField(default=datetime.datetime.utcnow, null=False)
-
 
     class Meta:
         ordering = ('post_date', 'last_edit')

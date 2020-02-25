@@ -13,7 +13,9 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from django import http
 import json
 import logging
-from.responses import HttpResponseUnauthorized
+from .responses import HttpResponseUnauthorized
+
+
 # Create your views here.
 
 
@@ -73,16 +75,28 @@ class GetPosts(APIView):
                                                        post_type__exact=0).order_by()[:10]
             # Cache the posts
             cache.set(cache_query, posts)
-            logging.info("Hitting database and adding to cache for Whats on posts at access level {}".format(access_level))
+            logging.info(
+                "Hitting database and adding to cache for Whats on posts at access level {}".format(access_level))
 
         serialized = PostSerializer(posts, many=True)
         return http.JsonResponse(serialized.data, safe=False)
 
 
+# Adds a post to the database
+class AddPost(APIView):
 
+    def post(self, request):
+        # Require login
+        if request.user.is_anonymous:
+            return http.HttpResponseForbidden()
 
+        # Get the raw data
+        json_raw = request.body
 
-
+        post = posting_models.Post(title=json_raw['title'], content=json_raw['content'], author=request.user,
+                                   post_type=json_raw['type'], required_access=json_raw['access_level'])
+        post.save()
+        return http.HttpResponse()
 
 
 # Get a csrf token
