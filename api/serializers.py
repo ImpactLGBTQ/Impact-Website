@@ -22,10 +22,9 @@ class PostSerializer(serializers.ModelSerializer):
         fields = (
             'title',
             'content',
-            'image',
-            'post_type',
-            'required_access',
             'author_name',
+            'uuid',
+            'author',
         )
 
     def get_author_name(self, post):
