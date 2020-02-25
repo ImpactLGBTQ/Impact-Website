@@ -15,6 +15,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 # Serializes a post to be send as json in response to a rest api hit
 class PostSerializer(serializers.ModelSerializer):
+    author_name = serializers.SerializerMethodField()
+
     class Meta:
         model = post_models.Post
         fields = (
@@ -23,5 +25,10 @@ class PostSerializer(serializers.ModelSerializer):
             'image',
             'post_type',
             'required_access',
+            'author_name',
         )
+
+    def get_author_name(self, post):
+        username = post.author.username
+        return username
 
