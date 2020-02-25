@@ -9,6 +9,7 @@ urlpatterns = (
 
     path('posting/get/<int:num>', views.GetPosts.as_view(), name='get-posts'),
     path('posting/new/', views.AddPost.as_view(), name='new-post'),
+    path('post/del/<uuid:post_id>', views.DelPost.as_view(), name='del-post'),
 
     path('auth/logmein/', views.AuthenticateUser.as_view(), name='authenticate-user'),
     path('auth/logmeout/', views.LogoutView.as_view(), name='logout-user'),
