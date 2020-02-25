@@ -48,7 +48,31 @@ class AuthenticateUser(ObtainAuthToken):
         return HttpResponseUnauthorized()
 
 
+class DelPost(APIView):
+
+    def post(self, request, post_id):
+        # If anonymous definitely forbidden
+        if request.user.is_anonymous:
+            return http.HttpResponseForbidden()
+
+        post = posting_models.Post.objects.get(uuid__exact=post_id)
+        if post.author != request.user and request.user.access_level < 2:
+            # Not staff and not owner of the post
+            return http.HttpResponseForbidden()
+        # User is valid and can delete this post
+
+        # Hide it, effectively deleting it
+        post.is_visible = False
+
+        # Save changes
+        post.save()
+
+        # Return success
+        return http.HttpResponse()
+
+
 class GetPosts(APIView):
+    authentication_classes = []
 
     def get(self, request, num):
         # Ensure not too big
@@ -72,7 +96,7 @@ class GetPosts(APIView):
         else:
             # Pull first 10 posts
             posts = posting_models.Post.objects.filter(required_access__lte=access_level,
-                                                       post_type__exact=0).order_by()[:10]
+                                                       post_type__exact=0, is_visible=True).order_by()[:10]
             # Cache the posts
             cache.set(cache_query, posts)
             logging.info(
