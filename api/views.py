@@ -92,11 +92,13 @@ class AddPost(APIView):
 
         # Get the raw data
         print('Got: ', request.body)
-        json_raw = json.loads(request.body)
-
+        try:
+            json_raw = json.loads(request.body)
+        except json.JSONDecodeError as e:
+            logging.exception("Failed to decode message: "+request.body+" error: "+str(e))
         post = posting_models.Post(title=json_raw['title'], content=json_raw['content'], author=request.user,
                                    post_type=json_raw['type'], required_access=json_raw['access_level'])
-
+        post.save()
         return http.HttpResponse()
 
 

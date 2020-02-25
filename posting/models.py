@@ -32,16 +32,15 @@ class Post(models.Model):
         (0, 'Whats on (Feed post)'),
         (1, 'Event (Impact post)'),
     )
-    post_type = models.CharField(choices=POST_TYPES, default=POST_TYPES[0], max_length=23)
+    post_type = models.IntegerField(choices=POST_TYPES, default=0)
 
     # Access levels
     ACCESS_LEVEL_REQUIRED = (
         (0, 'Everyone'),
-        (1, 'Impact member'),
-        (2, 'Staff'),
+        (1, 'Member of Impact'),
+        (2, 'Staff/Volunteer of Impact'),
     )
-    required_access = models.CharField(choices=ACCESS_LEVEL_REQUIRED, null=False, default=ACCESS_LEVEL_REQUIRED[0],
-                                       blank=False, max_length=15)
+    required_access = models.IntegerField(choices=ACCESS_LEVEL_REQUIRED, null=False, default=0, blank=False)
 
     # Visibility (turn off instead of deleting, allows historical proof)
     is_visible = models.BooleanField(default=True, help_text='Visibility, toggle instead of deleting')
