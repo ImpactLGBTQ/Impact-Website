@@ -91,11 +91,12 @@ class AddPost(APIView):
             return http.HttpResponseForbidden()
 
         # Get the raw data
-        json_raw = request.body
+        print('Got: ', request.body)
+        json_raw = json.loads(request.body)
 
         post = posting_models.Post(title=json_raw['title'], content=json_raw['content'], author=request.user,
                                    post_type=json_raw['type'], required_access=json_raw['access_level'])
-        post.save()
+
         return http.HttpResponse()
 
 
