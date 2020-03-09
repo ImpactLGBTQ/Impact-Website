@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+    frontend:
+        build: ./ImpactWebsiteFrontend
+        restart: always
+        depends_on:
+            - web
+        expose:
+            - "3000"
+
+    nginx:
+        build: ./nginx
+        restart: always
+        ports:
+            - "81:81"
+            - "80:80"
+        depends_on:
+            - web
+            
+    db:
+        image: postgres
+        restart: always
+    web:
+        build: .
+        command: gunicorn ImpactWebsite.wsgi:application --bind 0.0.0.0:8000
+        volumes:
+            - .:/code
+
+        expose:
+            - "8000"
+        restart: always
+
+        depends_on:
+            - db
+        
+volumes:
+    sock_location:
