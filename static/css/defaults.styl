@@ -19,43 +19,83 @@
 // Stylus file for default/standard classes (like standard_form for flex form)
 @require "default_vars.styl"
 
+
 .title_text {
   margin-left 0
   margin-right 0
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   margin-top 0;
   padding-top 5%
-  color pink-colour
+  color tarkalian-pink
   text-align center
   border-bottom 1px solid light-grey
 }
 
 a {
-  color lightblue
+  color link-colour
 }
 
-html {
-  margin 0
-  padding 0
-  background-color background-colour
-  color lightslategrey
-
-  body {
-    margin 0
-    padding 0
-    height 100%
-
-    .body {
-      padding-top 5%
-      margin-left 25%
-      margin-right 25%
-      width 50%
+.body {
+    padding-top 110px
+    @media only screen and (max-width 600px) {
+      width 90%
+      margin-left 5%
+      margin-right 5%
     }
-  }
+    margin-left 25%
+    margin-right 25%
+    width 50%
+
 }
 
 .standard_form {
-  display flex
-  justify-content space-evenly
-  flex-direction column
+
+  .form_btn {
+    margin-top 35px
+    margin-bottom 0
+    background button-background
+    color button-foreground
+    border 2px black
+    height 30px
+    width 50%
+    margin-left 25%
+    margin-right 25%
+    border-radius 4px
+    cursor pointer
+    transition 0.4s
+
+  }
+  .form_btn:hover {
+    background button-light-background
+    border-radius 8px
+    color black
+  }
+
+  .standard_form_row {
+    padding-bottom 5px
+
+    input {
+      width 100%
+      box-sizing border-box
+      padding 20px 5px 20px 5px
+      border-radius 5px
+      border
+    }
+  }
 }
+.form_container {
+  width 45%
+  position absolute
+  border 1px solid edible-blue
+  padding 40px 50px 50px 60px
+  background-color edible-blue
+  background-blend-mode lighten
+  background-position center
+  border-radius 6px
+}
+
+* {
+  font-family 'Titillium Web', sans-serif !important
+}
+
+

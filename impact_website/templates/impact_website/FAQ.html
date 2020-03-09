@@ -1,39 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>FAQ</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/defaults.css" %}" />
-</head>
-<body>
-<div class="header">
-    {% include "includes/header_bar.html" %}
-</div>
-<div class="body">
-    <h2 class="title_text">FAQ - Some common questions about being LGBTQ+ and the community</h2>
+{% extends "base/base_page.html" %}
+{% block title %}LGBTQ+ FAQ{% endblock %}
+{% load static %}
+{% block stylesheet_path %}{% static "impact_website/css/faq.css" %}{% endblock %}
+{% block body %}
+    {% load cache %}
+    {% cache 84000 "FAQ-page" %}
+    <h2 class="title_text display-2" style="border-bottom: none;margin-bottom: 0">FAQ</h2>
+    <h3 class="title_text">Some common questions about being LGBTQ+ and the community</h3>
+    <div>
+        <h3>This page could possibly use more content</h3>
+        Some ideas
+        <ul>
+            <li>More information, possibly something helpful for parents (or to show parents)</li>
+            <li>What shouldn't you ask *any* LGBTQ+ individual (the trans one still needs to stay though)</li>
+            <li>What resources are available for me (conclusion kinda wrap up i guess with a link to the
+                'signposting' page</li>
+        </ul>
+    </div>
     <div>
         <h3>What does the LGBTQIA acronym stand for?</h3>
-        <p>
-Lesbian:
-A woman who has romantic and/or sexual attraction towards women.<br>
-Gay:
-A man who has romantic and/or sexual attraction towards men.<br>
-Bisexual:
-An umbrella term used to describe a person with a romantic and/or sexual attraction to more than one gender.<br>
-Trans:
-An umbrella term used to describe people whose gender is not the same as, does not sit comfortably with, the sex they
-            were assigned at birth. This can be within the binary genders of male or female, or away from which would
-            make them non-binary.<br>
-Queer/Questioning:
-Queer is a term used by those wanting to reject specific labels of sexuality and gender.<br>
-Questioning is the process of exploring your sexuality and/or gender<br>
-Intersex:
-A term used to describe a person who may not have the biological attributes of how society views male or female.<br>
-Ace:
-An umbrella term used to describe a variation in levels of romantic and/or sexual attraction, including a lack of
-            attraction.<br>
-        </p>
+        <dl class="row">
+            <dt class="col-sm-3">Lesbian:</dt>
+            <dd class="col-sm-9">A woman who has romantic and/or sexual attraction towards women.<br></dd>
+
+            <dt class="col-sm-3">Gay:</dt>
+            <dd class="col-sm-9">A man who has romantic and/or sexual attraction towards men.<br></dd>
+
+            <dt class="col-sm-3">Bisexual:</dt>
+            <dd class="col-sm-9">An umbrella term used to describe a person with a romantic and/or sexual attraction
+                to more than one
+                gender.<br></dd>
+
+            <dt class="col-sm-3">Trans:</dt>
+            <dd class="col-sm-9">An umbrella term used to describe people whose gender is not the same as, does not
+                sit comfortably with, the sex they
+                were assigned at birth. This can be within the binary genders of male or female, or away from which would
+                make them non-binary.<br></dd>
+
+            <dt class="col-sm-3">Queer/Questioning:</dt>
+            <dd class="col-sm-9">Queer is a term used by those wanting to reject specific labels of sexuality and gender.
+                Questioning is the process of exploring your sexuality and/or gender<br></dd>
+
+            <dt class="col-sm-3">Intersex:</dt>
+            <dd class="col-sm-9">A term used to describe a person who may not have the biological attributes of how society views
+                male or female.<br></dd>
+
+            <dt class="col-sm-3">Ace:</dt>
+            <dd class="col-sm-9">An umbrella term used to describe a variation in levels of romantic and/or sexual attraction,
+                including a lack of attraction.<br> </dd>
+
+        </dl>
         <h3>Is it a choice? </h3>
         <p>
 Being trans/gay etc. is not a choice, just as being cisgender or heterosexual isn’t a choice.
@@ -54,8 +70,6 @@ Binding is done by transgender people in attempt at flattening their chest, usin
             Many people cannot afford the suggested methods of binding (tank chest binder) or are forbidden from doing so by family members who disagree. Therefore they resort to unsafe methods, such as tape or bandages. Unsafe methods can cause severe damage to the flesh and tissue, making future surgeries very difficult or sometimes impossible.
 If you discover your child is binding unsafely, or wants to start binding, make sure you provide them with safe methods only recommended by professionals. <!-- TODO: ADD IN A LINK HERE --> TODO: SUCH AS: X
 </p>
-
     </div>
-</div>
-</body>
-</html>
+    {% endcache %}
+{% endblock %}

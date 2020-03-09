@@ -1,23 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Members portal</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static "auth_system/login_portal.css" %}" />
-</head>
-<body>
-<div class="header">
-    {% include "includes/header_bar.html" %}
-</div>
-<div class="body">
+{% extends "base/base_page.html" %}
+{% block title %}Login - Impact LGBTQ+{% endblock %}
+{% load static %}
+{% block stylesheet_path %}{% static "auth_system/login_portal.css" %}{% endblock %}
+{% block body %}
     <div class="form_container">
         <h2>Login to the Impact website</h2>
-        <form class="standard_form login_form" action="{% url "auth_system-login_portal" %}" method="post">
+        <form class="standard_form" action="{% url "auth_system-login_portal" %}" method="post">
             {% csrf_token %}
-            {{ login_form }}
+            <div class="form-group">
+                {{ form.username.errors }}
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                {{ form.password.errors }}
+                <label for="{{ form.password.id_for_label }}">Password</label>
+                {{ form.password }}
+            </div> <!-- form-check -->
+            <div class="custom-control custom-switch">
+                {{ form.username.errors }}
+                {{ form.remember_me }}
+                <label class="custom-control-label" for="{{ form.remember_me.id_for_label }}">Remember me</label>
+            </div>
+            {% if form.non_field_errors %}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    {{ form.non_field_errors }}
+
+                </div>
+            {% endif %}
+            <button class="form_btn btn btn-primary" type="submit"><text>Login</text></button>
+            <div class="form-group" style="margin-top: 20px">
+                Dont have an account? <a class="signup_link" href=
+                    "{% url "auth_system-create-account-portal" %}">create
+                one</a>.<br> (You must be a member of Impact and have an authentication token)
+            </div>
         </form>
     </div>
-</div>
-</body>
-</html>
+{% endblock %}

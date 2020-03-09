@@ -25,38 +25,71 @@
   margin-bottom: 5px;
   margin-top 0;
   padding-top 10px
-  color pink-colour
+  color tilliumn-silver
 }
 
 .header_bar_container {
   background-color light-grey
   border-bottom: 4px solid cadetblue;
   margin 0
-  display: flex;
+  display: flex
+  opacity 1
+  padding 0
   flex-direction column
   justify-content space-between
   width 100%
   position: fixed;
+  z-index 1000 // Rediculusly high because bootstrap
+
   .header_bar_inner {
     display flex
     flex-direction row
     justify-content space-between
+    position relative
+    padding-left 30px
+    padding-right 30px
     height 100%
     padding-bottom 3px
-  
-
-    button {
-      height 100%
-      font-size large
-      background none
-      border 1px solid dark-violet
-      color violet-colour
-      border-radius 3px
-    }
-    button:hover {
-      background dark-violet
-      border-radius 5px
-      transform scale(1.1)
-    }
   }
+}
+
+
+.menu_btn {
+  color black
+}
+
+#title_container {
+  @media only screen and (max-width 600px) {
+    display none
+    height 0
+    width 0
+    margin 0
+    padding 0
+  }
+}
+
+.header_btn {
+      height 100%
+      position relative
+      background none
+      border none
+      color button-foreground
+      border-radius 3px
+      background-color transparent
+    }
+.header_btn:hover {
+  //background dark-violet
+  border-radius 5px
+  transform scale(1.1)
+}
+
+.header_btn:after {
+  display block
+  content ' '
+  border-bottom 3px solid button-background
+  transform scaleX(0)
+  transition transform 250ms ease-in-out
+}
+.header_btn:hover:after {
+  transform scaleX(1)
 }

@@ -1,0 +1,14 @@
+{% extends "base/base_page.html" %}
+{% block title %}{{ users_profile.username }}{% endblock %}
+{% block body %}
+    <div>
+        <h2 class="display-2 title_text">Profile of {{ users_profile.username }}</h2>
+    </div>
+    <div>
+        <h3>Stats</h3>
+        <p>
+            Joined: {{ users_profile.date_joined }}<br>
+            Last logged on: {{ users_profile.last_login }}<br>
+        </p>
+    </div>
+{% endblock %}

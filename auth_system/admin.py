@@ -17,5 +17,16 @@
 # ==============================================================================
 
 from django.contrib import admin
+from . import models
+
 
 # Register your models here.
+
+@admin.register(models.User)
+class UserAccountsAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.AuthTokens)
+class AuthenticationTokensAdmin(admin.ModelAdmin):
+    fields = ('human_readable_tkn',)
