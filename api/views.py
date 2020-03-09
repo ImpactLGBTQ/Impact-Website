@@ -50,7 +50,7 @@ class AuthenticateUser(ObtainAuthToken):
 
 class DelPost(APIView):
 
-    def post(self, request, post_id):
+    def get(self, request, post_id):
         # If anonymous definitely forbidden
         if request.user.is_anonymous:
             return http.HttpResponseForbidden()

@@ -24,13 +24,14 @@ services:
         restart: always
     web:
         build: .
-        command: gunicorn ImpactWebsite.wsgi:application --bind 0.0.0.0:8000
+        #command: gunicorn ImpactWebsite.wsgi:application --bind 0.0.0.0:8000
+        #command: uwsgi --ini /code/uwsgi.ini
         volumes:
             - .:/code
 
         expose:
             - "8000"
-        restart: always
+              #        restart: always
 
         depends_on:
             - db
