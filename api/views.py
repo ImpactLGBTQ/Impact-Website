@@ -119,14 +119,14 @@ class AddPost(APIView):
         try:
             json_raw = json.loads(request.body)
         except json.JSONDecodeError as e:
-            logging.exception("Failed to decode message: "+request.body+" error: "+str(e))
+            logging.exception("Failed to decode message: "+str(request.body)+" error: "+str(e))
         post = posting_models.Post(title=json_raw['title'], content=json_raw['content'], author=request.user,
                                    post_type=json_raw['type'], required_access=json_raw['access_level'])
         post.save()
 
         post_info = {"uuid": post.uuid}
 
-        return http.JsonResponse(json.dumps(post_info), safe=False)
+        return http.JsonResponse(post_info, safe=False)
 
 # Get a csrf token
 class GetCSRF(APIView):
