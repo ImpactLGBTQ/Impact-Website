@@ -18,7 +18,7 @@ from .responses import HttpResponseUnauthorized
 
 # Create your views here.
 
-
+# Authentcation and sign in a user
 class AuthenticateUser(ObtainAuthToken):
     def post(self, request, **kwargs):
         json_data = request.body
@@ -47,7 +47,7 @@ class AuthenticateUser(ObtainAuthToken):
 
         return HttpResponseUnauthorized()
 
-
+# 'Delete' a post 
 class DelPost(APIView):
 
     def get(self, request, post_id):
@@ -70,7 +70,7 @@ class DelPost(APIView):
         # Return success
         return http.HttpResponse()
 
-
+# Get a specified (up to 20) number of posts 
 class GetPosts(APIView):
     authentication_classes = []
 
@@ -106,7 +106,7 @@ class GetPosts(APIView):
         return http.JsonResponse(serialized.data, safe=False)
 
 
-# Adds a post to the database
+# Adds a post to the database, also returns the details of the added post
 class AddPost(APIView):
 
     def post(self, request):
@@ -123,8 +123,10 @@ class AddPost(APIView):
         post = posting_models.Post(title=json_raw['title'], content=json_raw['content'], author=request.user,
                                    post_type=json_raw['type'], required_access=json_raw['access_level'])
         post.save()
-        return http.HttpResponse()
 
+        post_info = {"uuid": post.uuid}
+
+        return http.JsonResponse(json.dumps(post_info), safe=False)
 
 # Get a csrf token
 class GetCSRF(APIView):
@@ -132,7 +134,7 @@ class GetCSRF(APIView):
     def get(self, request, **kw):
         return render(request, 'api/get_csrf.html')
 
-
+# Get information about the currently signed in user
 class GetUserInfo(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -140,6 +142,6 @@ class GetUserInfo(APIView):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
-
+# Log the current user out
 class DeauthUser(LogoutView, APIView):
     pass
