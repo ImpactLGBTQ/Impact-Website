@@ -1,0 +1,76 @@
+=================== INSTALL CHECK FOR: NGINX ===================
+Package: nginx
+Status: install ok installed
+Priority: optional
+Section: httpd
+Installed-Size: 36
+Maintainer: Debian Nginx Maintainers <pkg-nginx-maintainers@lists.alioth.debian.org>
+Architecture: all
+Version: 1.16.1-0+bionic1
+Depends: nginx-full (<< 1.16.1-0+bionic1.1~) | nginx-light (<< 1.16.1-0+bionic1.1~) | nginx-extras (<< 1.16.1-0+bionic1.1~), nginx-full (>= 1.16.1-0+bionic1) | nginx-light (>= 1.16.1-0+bionic1) | nginx-extras (>= 1.16.1-0+bionic1)
+Description: small, powerful, scalable web/proxy server
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This is a dependency package to install either nginx-full (by default),
+ nginx-light or nginx-extras.
+Homepage: http://nginx.net
+=================== END OF INSTALL CHECK FOR: NGINX ===================
+=================== INSTALL CHECK FOR: POSTGRESQL-10 ===================
+dpkg-query: package 'postgresql-10' is not installed and no information is available
+Use dpkg --info (= dpkg-deb --info) to examine archive files,
+and dpkg --contents (= dpkg-deb --contents) to list their contents.
+=================== END OF INSTALL CHECK FOR: POSTGRESQL-10 ===================
+=================== INSTALL LOG FOR POSTGRESQL-10 ===================
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  locales-all
+The following NEW packages will be installed
+  postgresql-10
+0 to upgrade, 1 to newly install, 0 to remove and 0 not to upgrade.
+Need to get 3,758 kB of archives.
+After this operation, 15.2 MB of additional disk space will be used.
+Get:1 http://gb.archive.ubuntu.com/ubuntu bionic-updates/main amd64 postgresql-10 amd64 10.10-0ubuntu0.18.04.1 [3,758 kB]
+Fetched 3,758 kB in 2s (1,843 kB/s)
+Selecting previously unselected package postgresql-10.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 279873 files and directories currently installed.)
+Preparing to unpack .../postgresql-10_10.10-0ubuntu0.18.04.1_amd64.deb ...
+Unpacking postgresql-10 (10.10-0ubuntu0.18.04.1) ...
+Setting up postgresql-10 (10.10-0ubuntu0.18.04.1) ...
+Creating new PostgreSQL cluster 10/main ...
+/usr/lib/postgresql/10/bin/initdb -D /var/lib/postgresql/10/main --auth-local peer --auth-host md5
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_GB.UTF-8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/10/main ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default timezone ... Europe/London
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    /usr/lib/postgresql/10/bin/pg_ctl -D /var/lib/postgresql/10/main -l logfile start
+
+Ver Cluster Port Status Owner    Data directory              Log file
+[31m10  main    5432 down   postgres /var/lib/postgresql/10/main /var/log/postgresql/postgresql-10-main.log[0m
+update-alternatives: using /usr/share/postgresql/10/man/man1/postmaster.1.gz to provide /usr/share/man/man1/postmaster.1.gz (postmaster.1.gz) in auto mode
+Processing triggers for postgresql-common (190ubuntu0.1) ...
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+  en_us
+Removing obsolete dictionary files:
+=================== END INSTALL LOG FOR POSTGRESQL-10 ===================

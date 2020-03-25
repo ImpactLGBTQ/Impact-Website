@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ash/PycharmProjects/ImpactWebsite/deploy/setup_exe/main.cpp
+iostream
+-
+apt-pkg/cachefile.h
+-
+apt-pkg/pkgcache.h
+-
+

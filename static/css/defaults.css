@@ -1,0 +1,85 @@
+/*==============================================================================
+ =     Impact group website
+ =     Copyright (C) 2019  Natasha England-Elbro
+ =
+ =     This program is free software: you can redistribute it and/or modify
+ =     it under the terms of the GNU General Public License as published by
+ =     the Free Software Foundation, either version 3 of the License, or
+ =     (at your option) any later version.
+ =
+ =     This program is distributed in the hope that it will be useful,
+ =     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ =     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ =     GNU General Public License for more details.
+ =
+ =     You should have received a copy of the GNU General Public License
+ =     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ =============================================================================*/
+.title_text {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 15px;
+  margin-top: 0;
+  padding-top: 5%;
+  color: #cb31bc;
+  text-align: center;
+  border-bottom: 1px solid #3c3c3c;
+}
+a {
+  color: #2a61ff;
+}
+.body {
+  padding-top: 110px;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+}
+@media only screen and (max-width: 600px) {
+  .body {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+.standard_form .form_btn {
+  margin-top: 35px;
+  margin-bottom: 0;
+  background: #3c6478;
+  color: #c7cabf;
+  border: 2px #000;
+  height: 30px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.standard_form .form_btn:hover {
+  background: #74b2c7;
+  border-radius: 8px;
+  color: #000;
+}
+.standard_form .standard_form_row {
+  padding-bottom: 5px;
+}
+.standard_form .standard_form_row input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 5px 20px 5px;
+  border-radius: 5px;
+border
+}
+.form_container {
+  width: 45%;
+  position: absolute;
+  border: 1px solid #acf;
+  padding: 40px 50px 50px 60px;
+  background-color: #acf;
+  background-blend-mode: lighten;
+  background-position: center;
+  border-radius: 6px;
+}
+* {
+  font-family: 'Titillium Web', sans-serif !important;
+}

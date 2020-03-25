@@ -21,10 +21,14 @@ services:
     db:
         image: postgres
         restart: always
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        environment:
+              - POSTGRES_USER=${SQL_USER}
+              - POSTGRES_PASSWORD=${SQL_PASSWORD}
+              - POSTGRES_DB=${SQL_DATABASE}
     web:
         build: .
-        #command: gunicorn ImpactWebsite.wsgi:application --bind 0.0.0.0:8000
-        #command: uwsgi --ini /code/uwsgi.ini
         volumes:
             - .:/code
 
@@ -36,4 +40,4 @@ services:
             - db
         
 volumes:
-    sock_location:
+    postgres_data:

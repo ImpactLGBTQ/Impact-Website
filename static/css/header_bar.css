@@ -1,0 +1,83 @@
+/*==============================================================================
+ =     Impact group website
+ =     Copyright (C) 2019  Natasha England-Elbro
+ =
+ =     This program is free software: you can redistribute it and/or modify
+ =     it under the terms of the GNU General Public License as published by
+ =     the Free Software Foundation, either version 3 of the License, or
+ =     (at your option) any later version.
+ =
+ =     This program is distributed in the hope that it will be useful,
+ =     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ =     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ =     GNU General Public License for more details.
+ =
+ =     You should have received a copy of the GNU General Public License
+ =     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ =============================================================================*/
+.header_text {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 5px;
+  margin-top: 0;
+  padding-top: 10px;
+  color: #c4b9b9;
+}
+.header_bar_container {
+  background-color: #3c3c3c;
+  border-bottom: 4px solid #5f9ea0;
+  margin: 0;
+  display: flex;
+  opacity: 1;
+  padding: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+}
+.header_bar_container .header_bar_inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 100%;
+  padding-bottom: 3px;
+}
+.menu_btn {
+  color: #000;
+}
+@media only screen and (max-width: 600px) {
+  #title_container {
+    display: none;
+    height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+.header_btn {
+  height: 100%;
+  position: relative;
+  background: none;
+  border: none;
+  color: #c7cabf;
+  border-radius: 3px;
+  background-color: transparent;
+}
+.header_btn:hover {
+  border-radius: 5px;
+  transform: scale(1.1);
+}
+.header_btn:after {
+  display: block;
+  content: ' ';
+  border-bottom: 3px solid #3c6478;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+.header_btn:hover:after {
+  transform: scaleX(1);
+}

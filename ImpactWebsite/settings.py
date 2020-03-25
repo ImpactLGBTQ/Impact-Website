@@ -20,7 +20,7 @@ from django.urls import reverse
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CSRF_TRUSTED_ORIGINS = ['localhost:60']
+#CSRF_TRUSTED_ORIGINS = ['localhost:60']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -28,9 +28,9 @@ CSRF_TRUSTED_ORIGINS = ['localhost:60']
 SECRET_KEY = '#9g@fst18g4q-&^+o9r-#q$3)d%%8@4kv4asgk&q#on+i0+yyg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True#bool(os.environ.get("DEBUG", default=Fa;se))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []#os.environ.get("DJANGO_ALLOWED_HOSTS").split(':')
 
 config = configparser.ConfigParser()
 with open('ImpactWebsite/DATA.ini') as conf:
@@ -49,18 +49,18 @@ INSTALLED_APPS = [
     'auth_system',
     'rest_framework.authtoken',
     'posting',
-    'bootstrap4',
+    #'bootstrap4',
     'api',
     'rest_framework',
-    'corsheaders',
+    #'corsheaders',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = ['http://localhost:3001', 'http://localhost:3000']
+#CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_WHITELIST = ['http://localhost:3001', 'http://localhost:3000']
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    #'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -115,11 +115,14 @@ use_postgre = config.get('DATABASE', 'use_postgre')
 if use_postgre == 'True':
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': name,
-            'USERNAME': username,
-            'PASSWORD': password,
+            "ENGINE": os.environ.get("DJANGO_SQL_ENGINE", "django.db.backends.sqlite3"),
+            "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+            "USER": os.environ.get("SQL_USER", "impact_website"),
+            "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+            "HOST": os.environ.get("SQL_HOST", "db"),
+            "PORT": os.environ.get("SQL_PORT", "5432"),       
         }
+
     }
 else:
     DATABASES = {
