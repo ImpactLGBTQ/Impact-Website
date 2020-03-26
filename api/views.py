@@ -74,7 +74,7 @@ class DelPost(APIView):
 class GetPosts(APIView):
     authentication_classes = []
 
-    def get(self, request, num):
+    def get(self, request, start, num):
         # Ensure not too big
         if num < 1 or num > 20:
             return http.HttpResponseBadRequest()
@@ -96,7 +96,7 @@ class GetPosts(APIView):
         else:
             # Pull first 10 posts
             posts = posting_models.Post.objects.filter(required_access__lte=access_level,
-                                                       post_type__exact=0, is_visible=True).order_by()[:10]
+                                                       post_type__exact=0, is_visible=True).order_by()[start:num]
             # Cache the posts
             cache.set(cache_query, posts)
             logging.info(

@@ -7,7 +7,7 @@ urlpatterns = (
     path('csrf/', views.GetCSRF.as_view(), name='get-csrf'),
     path('user/', views.GetUserInfo.as_view(), name="get-user-info"),
 
-    path('posting/get/<int:num>', views.GetPosts.as_view(), name='get-posts'),
+    path('posting/get/<int:start>/<int:num>', views.GetPosts.as_view(), name='get-posts'),
     path('posting/new/', views.AddPost.as_view(), name='new-post'),
     path('post/del/<uuid:post_id>', views.DelPost.as_view(), name='del-post'),
 
