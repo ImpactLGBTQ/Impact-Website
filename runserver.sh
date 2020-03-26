@@ -7,7 +7,8 @@ exec uwsgi \
     --max-requests 5000 \
     --socket 0.0.0.0:8000 \
     --mount /backend=ImpactWebsite.wsgi:application \
-    --manage-script-name
+    --manage-script-name \
+    --buffer-size 8192
     
 
 

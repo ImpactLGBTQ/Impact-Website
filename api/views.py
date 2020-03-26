@@ -18,7 +18,7 @@ from .responses import HttpResponseUnauthorized
 
 # Create your views here.
 
-
+# Authentcation and sign in a user
 class AuthenticateUser(ObtainAuthToken):
     def post(self, request, **kwargs):
         json_data = request.body
@@ -47,7 +47,7 @@ class AuthenticateUser(ObtainAuthToken):
 
         return HttpResponseUnauthorized()
 
-
+# 'Delete' a post 
 class DelPost(APIView):
 
     def get(self, request, post_id):
@@ -70,11 +70,11 @@ class DelPost(APIView):
         # Return success
         return http.HttpResponse()
 
-
+# Get a specified (up to 20) number of posts 
 class GetPosts(APIView):
     authentication_classes = []
 
-    def get(self, request, num):
+    def get(self, request, start, num):
         # Ensure not too big
         if num < 1 or num > 20:
             return http.HttpResponseBadRequest()
@@ -96,7 +96,7 @@ class GetPosts(APIView):
         else:
             # Pull first 10 posts
             posts = posting_models.Post.objects.filter(required_access__lte=access_level,
-                                                       post_type__exact=0, is_visible=True).order_by()[:10]
+                                                       post_type__exact=0, is_visible=True).order_by()[start:num]
             # Cache the posts
             cache.set(cache_query, posts)
             logging.info(
@@ -106,7 +106,7 @@ class GetPosts(APIView):
         return http.JsonResponse(serialized.data, safe=False)
 
 
-# Adds a post to the database
+# Adds a post to the database, also returns the details of the added post
 class AddPost(APIView):
 
     def post(self, request):
@@ -119,12 +119,14 @@ class AddPost(APIView):
         try:
             json_raw = json.loads(request.body)
         except json.JSONDecodeError as e:
-            logging.exception("Failed to decode message: "+request.body+" error: "+str(e))
+            logging.exception("Failed to decode message: "+str(request.body)+" error: "+str(e))
         post = posting_models.Post(title=json_raw['title'], content=json_raw['content'], author=request.user,
                                    post_type=json_raw['type'], required_access=json_raw['access_level'])
         post.save()
-        return http.HttpResponse()
 
+        post_info = {"uuid": post.uuid}
+
+        return http.JsonResponse(post_info, safe=False)
 
 # Get a csrf token
 class GetCSRF(APIView):
@@ -132,7 +134,7 @@ class GetCSRF(APIView):
     def get(self, request, **kw):
         return render(request, 'api/get_csrf.html')
 
-
+# Get information about the currently signed in user
 class GetUserInfo(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -140,6 +142,6 @@ class GetUserInfo(APIView):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
-
+# Log the current user out
 class DeauthUser(LogoutView, APIView):
     pass
